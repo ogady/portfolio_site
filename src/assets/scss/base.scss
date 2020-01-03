@@ -406,10 +406,13 @@ input[type="radio"] {
 /* Box */
 
 .box {
+  width:80%; 
+  height:flex;
   border-radius: _size(border-radius);
   border: solid 2px _palette(border);
   margin-bottom: _size(element-margin);
-  padding: 1.5em;
+  margin-top: 1em;
+  padding: 1em;
 
   > :last-child,
   > :last-child > :last-child,
@@ -418,7 +421,7 @@ input[type="radio"] {
   }
 
   &.alt {
-    border: 0;
+    border: solid 2px _palette(border);
     border-radius: 0;
     padding: 0;
   }

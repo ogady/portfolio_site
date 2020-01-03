@@ -3,50 +3,37 @@ const querystring = require('querystring')
 const path = require('path')
 
 const siteMetadata = {
-  title: "Kentaro Matsushita - @kentaro-m",
-  author: "Kentaro Matsushita",
-  description: "kentarom's portfolio site",
-  siteUrl: 'https://kentarom.com',
+  title: "Takumi Ogawa - @ogady",
+  author: "Takumi Ogawa",
+  description: "ogady's portfolio site",
+  siteUrl: 'https://ogady.com',
   siteLanguage: 'ja',
-  shortName: 'kentarom',
+  shortName: 'ogady',
   skills: [
-    { type: 'Node.js', level: 80 },
-    { type: 'React', level: 70 },
-    { type: 'JavaScript', level: 60 },
+    { type: 'Go', level: 80 },
+    { type: 'Python', level: 50 },
+    { type: 'Django', level: 50 },
     { type: 'TypeScript', level: 40 },
-    { type: 'Java', level: 60 },
-    { type: 'Go', level: 40 },
+    { type: 'Java', level: 30 },
     { type: 'AWS', level: 70 },
+    { type: 'Docker', level: 40 },
+    { type: 'PostgresDB', level: 60 },
     { type: 'MySQL', level: 50 },
-    { type: 'Docker', level: 40 }
   ],
   user: {
-    name: 'Kentaro Matsushita',
-    github: 'kentaro-m',
-    qiita: 'kentaro_m',
-    speaker_deck: 'kentarom',
-    twitter: '_kentaro_m',
-    facebook: 'kentaro.m9',
-    linkedin: 'kentarom'
-  },
-  blog: {
-    url: 'https://blog.kentarom.com/',
-    feed_url: 'https://blog.kentarom.com/rss.xml',
-    article_count: '5'
+    name: 'Takumi Ogawa',
+    github: 'ogady',
+    qiita: 'ogady',
+    speaker_deck: 'ogady',
+    twitter: 'gadyma',
+    facebook: 'takumi.ogawa.37266',
+    linkedin: 'takumi-ogawa-869046195'
   },
   github: {
     topic: 'my-portfolio'
   },
-  speaker_deck: {
-    slides_count: '6'
-  }
 }
 
-const qs = querystring.stringify({
-  rss_url: `https://speakerdeck.com/${siteMetadata.user.speaker_deck}.atom`,
-  count: siteMetadata.speaker_deck.slides_count,
-  api_key: process.env.RSS2JSON_API_TOKEN
-})
 
 module.exports = {
   siteMetadata,
@@ -61,7 +48,7 @@ module.exports = {
         background_color: '#4173B3',
         theme_color: '#4173B3',
         display: 'minimal-ui',
-        icon: 'src/assets/images/favicon.png', // This path is relative to the root of the site.
+        icon: 'src/assets/images/ogady_pro.jpg', // This path is relative to the root of the site.
       },
     },
     {
@@ -88,17 +75,6 @@ module.exports = {
       options: {
         url: siteMetadata.blog.feed_url,
         name: `BlogPosts`,
-      }
-    },
-    {
-      resolve: "gatsby-source-apiserver",
-      options: {
-        url: `https://api.rss2json.com/v1/api.json?${qs}`,
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        name: 'Slides'
       }
     },
     {

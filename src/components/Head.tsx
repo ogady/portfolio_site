@@ -17,7 +17,7 @@ const Head: React.FC<HelmetProps> = () => {
           }
         }
       }
-      avatar: file(relativePath: { eq: "avatar.jpeg" }) {
+      avatar: file(relativePath: { eq: "ogady_pro.jpg" }) {
         publicURL
       }
     }

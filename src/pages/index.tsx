@@ -5,10 +5,9 @@ import Layout from '../components/layout'
 import SkillBars from '../components/SkillBars'
 import QiitaItems, { Post as QiitaPost } from '../components/QiitaItems'
 import Header from '../components/Header'
-import Slides, { Item as SlideItem } from '../components/Slides'
-import BlogPosts, { Post as BlogPost } from '../components/BlogPosts'
 import GitHubRepos, { Repo } from '../components/GitHubRepos'
 import Head from '../components/Head'
+import Career from '../components/Career'
 
 type User = {
   name: string
@@ -29,18 +28,6 @@ type HomeIndexProps = {
   data: {
     allQiitaPost: {
       edges: QiitaPost[]
-    }
-    allSlides: {
-      edges: [
-        {
-          node: {
-            items: SlideItem[]
-          }
-        }
-      ]
-    }
-    allFeedBlogPosts: {
-      edges: BlogPost[]
     }
     allGithubData: {
       edges: [
@@ -69,8 +56,6 @@ type HomeIndexProps = {
 
 const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
   const qiitaPosts = data.allQiitaPost.edges
-  const slides = data.allSlides.edges[0].node.items
-  const blogPosts = data.allFeedBlogPosts.edges
   const repos = data.allGithubData.edges[0].node.data.allGithubData.edges
   const { user, skills, blog } = data.site.siteMetadata
 
@@ -79,18 +64,14 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
       <Head />
       <Header user={user} />
       <div id="main">
+        <h1>About</h1>
         <SkillBars backgroundColor="#4173B3" skills={skills} />
+        <Career />
         {repos && repos.length > 0 && (
           <GitHubRepos repos={repos} user={user.github} />
         )}
         {qiitaPosts && qiitaPosts.length > 0 && (
           <QiitaItems posts={qiitaPosts} user={user.qiita} />
-        )}
-        {blogPosts && blogPosts.length > 0 && (
-          <BlogPosts posts={blogPosts} blogUrl={blog.url} />
-        )}
-        {slides && slides.length > 0 && (
-          <Slides items={slides} user={user.speaker_deck} />
         )}
       </div>
     </Layout>
@@ -114,7 +95,6 @@ export const query = graphql`
           name
           github
           qiita
-          speaker_deck
           twitter
           facebook
           linkedin
@@ -128,29 +108,6 @@ export const query = graphql`
           title
           url
           created_at
-        }
-      }
-    }
-    allSlides(filter: { items: { elemMatch: { title: { ne: null } } } }) {
-      edges {
-        node {
-          items {
-            guid
-            title
-            link
-            thumbnail
-            pubDate
-          }
-        }
-      }
-    }
-    allFeedBlogPosts {
-      edges {
-        node {
-          id
-          title
-          link
-          pubDate
         }
       }
     }

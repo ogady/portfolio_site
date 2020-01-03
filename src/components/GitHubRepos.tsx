@@ -23,7 +23,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ repos, user }) => {
         <a href={url}>{name}</a>
         <br />
         <span>
-          <Emoji text={description} />
+          {description}
         </span>
       </li>
     )

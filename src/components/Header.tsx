@@ -1,6 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery,Link } from 'gatsby'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faTwitter,
@@ -25,7 +25,7 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ user }) => {
   const data = useStaticQuery(graphql`
     {
-      avatar: file(relativePath: { eq: "avatar.jpeg" }) {
+      avatar: file(relativePath: { eq: "ogady_pro.jpg" }) {
         childImageSharp {
           fixed(width: 100, height: 100) {
             ...GatsbyImageSharpFixed
@@ -42,10 +42,32 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
           <Img fixed={data.avatar.childImageSharp.fixed} />
         </a>
         <h1>
-          <strong>Kentaro Matsushita</strong>{' '}
-          <p>Frontend Developer at DMM GAMES.</p>
-          <p>Happy coding everyday!</p>
+          <strong>Takumi Ogawa</strong>{' '}
+          <p>Backend Developer at &nbsp;
+          <a href={`http://www.mediado.jp/mediado/`}>
+            <b>MEDIA DO Co.,Ltd.</b>
+            </a>
+            </p>
+          <p>
+            Member of &nbsp;
+            <a href={`https://sre-next.dev/`}>
+              <b>SRE NEXT</b>
+            </a>
+          </p>
         </h1>
+        <hr></hr>
+        <div className="button small">
+        <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+              fontSize:20,
+            }}
+          >
+            About
+          </Link>
+          </div>
       </div>
       <div id="footer">
         <div className="inner">
