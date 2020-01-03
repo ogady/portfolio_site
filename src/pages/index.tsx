@@ -46,9 +46,6 @@ type HomeIndexProps = {
       siteMetadata: {
         user: User
         skills: Skill[]
-        blog: {
-          url: string
-        }
       }
     }
   }
@@ -57,7 +54,7 @@ type HomeIndexProps = {
 const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
   const qiitaPosts = data.allQiitaPost.edges
   const repos = data.allGithubData.edges[0].node.data.allGithubData.edges
-  const { user, skills, blog } = data.site.siteMetadata
+  const { user, skills } = data.site.siteMetadata
 
   return (
     <Layout>
@@ -87,9 +84,6 @@ export const query = graphql`
         skills {
           type
           level
-        }
-        blog {
-          url
         }
         user {
           name
