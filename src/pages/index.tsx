@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import GitHubRepos, { Repo } from '../components/GitHubRepos'
 import Head from '../components/Head'
 import Career from '../components/Career'
+import Certification from '../components/certification'
 
 type User = {
   name: string
@@ -70,6 +71,7 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
         {qiitaPosts && qiitaPosts.length > 0 && (
           <QiitaItems posts={qiitaPosts} user={user.qiita} />
         )}
+        <Certification />
       </div>
     </Layout>
   )
