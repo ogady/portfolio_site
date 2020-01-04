@@ -11,7 +11,7 @@
     "chart.js": "^2.9.3",
     "core-js": "^3.6.1",
     "dotenv": "^8.1.0",
-    "gatsby": "^2.10.14",
+    "gatsby": "^2.15.14",
     "gatsby-image": "^2.2.20",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-plugin-offline": "^3.0.30",
@@ -45,7 +45,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build --prefix-paths",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write './src/**/*.{ts,tsx}'",
     "test": "echo \"Error: no test specified\" && exit 1"
