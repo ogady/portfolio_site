@@ -120,3 +120,6 @@ module.exports = {
     `gatsby-plugin-typescript`
   ],
 }
+module.exports = {
+  pathPrefix: `/repo-name`,
+}
