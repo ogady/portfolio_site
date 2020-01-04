@@ -2,13 +2,13 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import SkillBars from '../components/SkillBars'
 import QiitaItems, { Post as QiitaPost } from '../components/QiitaItems'
 import Header from '../components/Header'
 import GitHubRepos, { Repo } from '../components/GitHubRepos'
 import Head from '../components/Head'
 import Career from '../components/Career'
 import Certification from '../components/Certification'
+import SkillCharts from '../components/SkillChart'
 
 type User = {
   name: string
@@ -63,7 +63,7 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
       <Header user={user} />
       <div id="main">
         <h1>About</h1>
-        <SkillBars backgroundColor="#4173B3" skills={skills} />
+        <SkillCharts backgroundColor="rgba( 58,126,242 , 0.30 )" skills={skills} />
         <Career />
         {repos && repos.length > 0 && (
           <GitHubRepos repos={repos} user={user.github} />
