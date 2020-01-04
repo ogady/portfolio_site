@@ -6,7 +6,7 @@ const siteMetadata = {
   title: "Takumi Ogawa - @ogady",
   author: "Takumi Ogawa",
   description: "ogady's portfolio site",
-  siteUrl: 'https://ogady.com',
+  siteUrl: 'https://ogady.github.io/gatsby-portfolio/',
   siteLanguage: 'ja',
   shortName: 'ogady',
   skills: [
