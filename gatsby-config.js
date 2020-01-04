@@ -15,10 +15,10 @@ const siteMetadata = {
     { type: 'Django', level: 50 },
     { type: 'TypeScript', level: 40 },
     { type: 'Java', level: 30 },
-    { type: 'AWS', level: 70 },
-    { type: 'Docker', level: 40 },
     { type: 'PostgresDB', level: 60 },
     { type: 'MySQL', level: 50 },
+    { type: 'Docker', level: 50 },
+    { type: 'AWS', level: 70 },
   ],
   user: {
     name: 'Takumi Ogawa',
