@@ -120,6 +120,6 @@ module.exports = {
     `gatsby-plugin-typescript`
   ],
 }
-// module.exports = {
-//   pathPrefix: `/gatsby-portfolio`,
-// }
+module.exports = {
+  pathPrefix: `/gatsby-portfolio`,
+}
