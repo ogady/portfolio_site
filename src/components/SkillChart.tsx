@@ -32,7 +32,7 @@ const SkillCharts: React.FC<SkillChartProps> = ({
     
   })
 
-  var ctx = 'myChart';
+  var ctx: string = 'myChart';
   new Chart(ctx, {
     type: 'radar',
     data: {
