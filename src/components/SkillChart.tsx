@@ -31,8 +31,8 @@ const SkillCharts: React.FC<SkillChartProps> = ({
     levels.push(value.level)
   })
 
-  var c: string = '2d'
-  new Chart(c, {
+ 
+  new Chart('mychart', {
     type: 'radar',
     data: {
       labels: types,
@@ -66,7 +66,7 @@ const SkillCharts: React.FC<SkillChartProps> = ({
       <h2>Skills</h2>
       <div className={collapsed ? 'collapsed' : ''}>
         <ul className="skills">
-          <canvas id={c} height="400" width="400"></canvas>
+          <canvas id="mychart" height="400" width="400"></canvas>
         </ul>
       </div>
     </section>
