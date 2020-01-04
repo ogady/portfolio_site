@@ -31,7 +31,7 @@ const SkillCharts: React.FC<SkillChartProps> = ({
     levels.push(value.level)
   })
 
-  var ctx: string = 'myChart'
+  var ctx: string = '2d'
   new Chart(ctx, {
     type: 'radar',
     data: {
