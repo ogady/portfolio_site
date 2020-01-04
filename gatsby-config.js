@@ -121,5 +121,5 @@ module.exports = {
   ],
 }
 module.exports = {
-  pathPrefix: `/repo-name`,
+  pathPrefix: `/gatsby-portfolio`,
 }
