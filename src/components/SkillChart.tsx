@@ -24,15 +24,14 @@ const SkillCharts: React.FC<SkillChartProps> = ({
     return () => clearTimeout(timer)
   }, [])
 
-  var types: string[]= []
-  var levels: number[]=[]
+  var types: string[] = []
+  var levels: number[] = []
   skills.forEach(function(value) {
     types.push(value.type)
     levels.push(value.level)
-    
   })
 
-  var ctx: string = 'myChart';
+  var ctx: string = 'myChart'
   new Chart(ctx, {
     type: 'radar',
     data: {
@@ -41,11 +40,11 @@ const SkillCharts: React.FC<SkillChartProps> = ({
         {
           label: 'Tech Skill',
           data: levels,
-          backgroundColor:backgroundColor
+          backgroundColor: backgroundColor,
         },
       ],
     },
-    options:{
+    options: {
       scale: {
         display: true,
         pointLabels: {
@@ -56,11 +55,10 @@ const SkillCharts: React.FC<SkillChartProps> = ({
           fontSize: 12,
           min: 0,
           max: 100,
-          beginAtZero: true
+          beginAtZero: true,
         },
-        
-      }
-    }
+      },
+    },
   })
 
   return (
