@@ -8,7 +8,7 @@ import Header from '../components/Header'
 import GitHubRepos, { Repo } from '../components/GitHubRepos'
 import Head from '../components/Head'
 import Career from '../components/Career'
-import Certification from '../components/certification'
+import Certification from '../components/Certification'
 
 type User = {
   name: string
