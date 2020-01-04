@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Chart from 'chart.js'
+var Chart = require('chart.js');
 
 type Skill = {
   type: string
@@ -32,7 +32,7 @@ const SkillCharts: React.FC<SkillChartProps> = ({
   })
 
   var ctx: string = 'myChart'
-  const chart = new Chart(ctx, {
+  var chart = new Chart(ctx, {
     type: 'radar',
     data: {
       labels: types,
