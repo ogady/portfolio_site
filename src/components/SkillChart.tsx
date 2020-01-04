@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Chart from 'chart.js'
-import { inflateRaw } from 'zlib'
 
 type Skill = {
   type: string
@@ -33,12 +32,12 @@ const SkillCharts: React.FC<SkillChartProps> = ({
     
   })
 
-  var ctx = 'myChart'
+  var ctx = 'myChart';
   new Chart(ctx, {
     type: 'radar',
     data: {
       labels: types,
-      datasets: [ 
+      datasets: [
         {
           label: 'Tech Skill',
           data: levels,
