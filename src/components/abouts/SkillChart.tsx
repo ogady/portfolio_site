@@ -26,8 +26,8 @@ const SkillCharts: React.FC<SkillChartProps> = ({
 
   var types: string[] = []
   var levels: number[] = []
-  var height:number = 100
-  var width:number=100
+  var height:number = 1
+  var width:number = 1
 
   skills.forEach(function(value) {
     types.push(value.type)
