@@ -1,11 +1,11 @@
-# portfolio-gatsby
+# portfolio_site
 
 ## :arrow_forward: Usage
 
 ### Create a new site
 ```
 $ npm install -g gatsby-cli
-$ gatsby new portfolio-gatsby https://github.com/kentaro-m/portfolio-gatsby
+$ gatsby new portfolio-gatsby https://github.com/ogady/portfolio_site
 ```
 
 ### Develop the site locally

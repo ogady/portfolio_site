@@ -6,7 +6,7 @@ const siteMetadata = {
   title: "Takumi Ogawa - @ogady",
   author: "Takumi Ogawa",
   description: "ogady's portfolio site",
-  siteUrl: 'https://ogady.github.io/gatsby-portfolio/',
+  siteUrl: 'https://ogady.github.io/portfolio_site/',
   siteLanguage: 'ja',
   shortName: 'ogady',
   skills: [
@@ -37,7 +37,7 @@ const siteMetadata = {
 
 module.exports = {
   siteMetadata,
-  pathPrefix: `/gatsby-portfolio`,
+  pathPrefix: `/portfolio_site`,
   plugins: [
     'gatsby-plugin-react-helmet',
     {

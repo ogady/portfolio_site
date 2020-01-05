@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-gatsby",
+  "name": "portfolio_site",
   "description": "ogady's portfolio site",
   "version": "1.0.0",
   "author": "Takumi Ogawa",
@@ -61,6 +61,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ogady/gatsby-portfolio"
+    "url": "https://github.com/ogady/portfolio_site"
   }
 }
