@@ -982,9 +982,9 @@ input[type="button"],
 /* Main */
 
 #main {
-  margin-left: $size-header-width;
+  margin-left: $size-header-width ;
   max-width: 50em + $size-header-pad;
-  padding: ($size-header-pad * 2) $size-header-pad $size-header-pad $size-header-pad;
+  padding: ($size-header-pad * 4) $size-header-pad $size-header-pad $size-header-pad;
   width: calc(100% - #{$size-header-width});
 
   > section {
@@ -1181,7 +1181,7 @@ body.is-touch {
   /* Basic */
 
   body, input, select, textarea {
-    font-size: 12pt;
+    font-size: 11pt;
   }
 
 }
@@ -1227,7 +1227,7 @@ body.is-touch {
   #main {
     margin-left: $size-header-width;
     max-width: none;
-    padding: ($size-header-pad * 2) $size-header-pad $size-header-pad $size-header-pad;
+    padding: ($size-header-pad * 4) $size-header-pad $size-header-pad $size-header-pad;
     width: calc(100% - #{$size-header-width});
   }
 
@@ -1323,7 +1323,7 @@ body.is-touch {
 
 @include breakpoint(small) {
 
-  $size-header-pad: 1.5em;
+  $size-header-pad: 0.5em;
 
   /* Basic */
 
@@ -1415,7 +1415,7 @@ body.is-touch {
 
 @include breakpoint(xsmall) {
 
-  $size-header-pad: 1.5em;
+  $size-header-pad: 0.2em;
 
   /* List */
 
