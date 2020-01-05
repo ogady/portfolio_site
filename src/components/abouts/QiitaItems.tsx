@@ -1,5 +1,5 @@
 import React from 'react'
-import { createDateFormat } from '../lib/utils'
+import { createDateFormat } from '../../lib/utils'
 
 export type Post = {
   node: {

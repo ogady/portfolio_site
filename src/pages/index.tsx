@@ -2,13 +2,13 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import QiitaItems, { Post as QiitaPost } from '../components/QiitaItems'
+import QiitaItems, { Post as QiitaPost } from '../components/abouts/QiitaItems'
 import Header from '../components/Header'
-import GitHubRepos, { Repo } from '../components/GitHubRepos'
+import GitHubRepos, { Repo } from '../components/abouts/GitHubRepos'
 import Head from '../components/Head'
-import Career from '../components/Career'
-import Certification from '../components/Certification'
-import SkillCharts from '../components/SkillChart'
+import Career from '../components/abouts/Career'
+import Certification from '../components/abouts/Certification'
+import SkillCharts from '../components/abouts/SkillChart'
 
 type User = {
   name: string

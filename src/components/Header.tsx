@@ -1,6 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { graphql, useStaticQuery,Link } from 'gatsby'
+import { graphql, useStaticQuery, Link } from 'gatsby'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faTwitter,
@@ -43,11 +43,12 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
         </a>
         <h1>
           <strong>Takumi Ogawa</strong>{' '}
-          <p>Backend Developer at &nbsp;
-          <a href={`http://www.mediado.jp/mediado/`}>
-            <b>MEDIA DO Co.,Ltd.</b>
+          <p>
+            Backend Developer at &nbsp;
+            <a href={`http://www.mediado.jp/mediado/`}>
+              <b>MEDIA DO Co.,Ltd.</b>
             </a>
-            </p>
+          </p>
           <p>
             Member of &nbsp;
             <a href={`https://sre-next.dev/`}>
@@ -56,18 +57,30 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
           </p>
         </h1>
         <hr></hr>
-        <div className="button small">
-        <Link
+        <h4>
+          <Link
             to="/"
             style={{
               color: `white`,
               textDecoration: `none`,
-              fontSize:20,
+              fontSize: 20,
             }}
           >
             About
           </Link>
-          </div>
+        </h4>
+        <h4>
+          <Link
+            to="/blog"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+              fontSize: 20,
+            }}
+          >
+            Blog
+          </Link>
+        </h4>
       </div>
       <div id="footer">
         <div className="inner">
