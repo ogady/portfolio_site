@@ -63,7 +63,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: path.join(__dirname,`src`,`blog-posts`),
+        path: path.join(__dirname,`contents`),
       },
     },
     `gatsby-plugin-sharp`,

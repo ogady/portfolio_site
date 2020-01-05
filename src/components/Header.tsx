@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
     <header id="header">
       <div className="inner">
-        <a href="/" className="image avatar">
+        <a href="/gatsby-portfolio" className="image avatar">
           <Img fixed={data.avatar.childImageSharp.fixed} />
         </a>
         <h1>
