@@ -87,7 +87,7 @@ export const query = graphql`
             date(formatString: "DD MMMM, YYYY")
             tags
           }
-          excerpt
+          excerpt(pruneLength:100)
         }
       }
     }

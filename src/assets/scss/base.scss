@@ -53,7 +53,7 @@ body {
 body, input, select, textarea {
   color: _palette(fg);
   font-family: _font(family);
-  font-size: 16pt;
+  font-size: 13pt;
   font-weight: _font(weight);
   line-height: 1.75em;
 }
@@ -157,28 +157,19 @@ blockquote {
   padding: 0.5em 0 0.5em 1.5em;
 }
 
+/* Code in Markdown */
 code {
-  background: _palette(border-bg);
-  border-radius: _size(border-radius);
-  border: solid 2px _palette(border);
+  
   font-family: _font(family-fixed);
-  font-size: 0.9em;
-  margin: 0 0.25em;
-  padding: 0.25em 0.65em;
 }
-
-pre {
-  -webkit-overflow-scrolling: touch;
-  font-family: _font(family-fixed);
-  font-size: 0.9em;
-  margin: 0 0 _size(element-margin) 0;
-
-  code {
-    display: block;
-    line-height: 1.75em;
-    padding: 1em 1.5em;
-    overflow-x: auto;
-  }
+pre[class*="language-"] {
+  display: block;
+  padding: 1em;
+  margin: 1.5em 0;
+  overflow: auto;
+}
+.gatsby-highlight pre[class*="language-"] {
+  font-size: 80%;
 }
 
 .align-left {
@@ -406,7 +397,7 @@ input[type="radio"] {
 /* Box */
 
 .box {
-  width:80%; 
+  width:90%; 
   height:flex;
   border-radius: _size(border-radius);
   border: solid 2px _palette(border);
@@ -904,7 +895,7 @@ input[type="button"],
   color: _palette(accent2, fg);
   height: 100%;
   left: 0;
-  padding: ($size-header-pad * 2) $size-header-pad;
+  padding: ($size-header-pad * 1.5) $size-header-pad;
   position: fixed;
   text-align: right;
   top: 0;
@@ -983,8 +974,8 @@ input[type="button"],
 
 #main {
   margin-left: $size-header-width ;
-  max-width: 50em + $size-header-pad;
-  padding: ($size-header-pad * 4) $size-header-pad $size-header-pad $size-header-pad;
+  max-width: 60em + $size-header-pad;
+  padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
   width: calc(100% - #{$size-header-width});
 
   > section {
@@ -1183,7 +1174,9 @@ body.is-touch {
   body, input, select, textarea {
     font-size: 11pt;
   }
-
+  .box {
+    width:100%; 
+  }
 }
 
 /* Large */
@@ -1196,7 +1189,7 @@ body.is-touch {
   /* Header */
 
   #header {
-    padding: ($size-header-pad * 2) $size-header-pad $size-header-pad $size-header-pad;
+    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
     width: $size-header-width;
 
     h1 {
@@ -1226,8 +1219,8 @@ body.is-touch {
 
   #main {
     margin-left: $size-header-width;
-    max-width: none;
-    padding: ($size-header-pad * 4) $size-header-pad $size-header-pad $size-header-pad;
+    max-width: 60em + $size-header-pad;
+    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
     width: calc(100% - #{$size-header-width});
   }
 
@@ -1415,7 +1408,7 @@ body.is-touch {
 
 @include breakpoint(xsmall) {
 
-  $size-header-pad: 0.2em;
+  $size-header-pad: 0.4em;
 
   /* List */
 
@@ -1476,12 +1469,18 @@ body.is-touch {
       li {
         border-left-width: 0;
         display: block;
-        line-height: 2.25em;
+        line-height: 1.25em;
         margin-left: 0;
         padding-left: 0;
       }
     }
   }
+
+    /* Main */
+
+    #main {
+      padding: ($size-header-pad * 2.5) 1em 1em 1em;
+    }
 
 }
 
@@ -1495,5 +1494,6 @@ body.is-touch {
     width: 100%;
   }
 }
+
 
 @import 'libs/customBase';

@@ -29,13 +29,14 @@ const Posts: React.FC<PostsProps> = ({ data }) => {
       {data.map(( edges ) => {
         return (
           <div key={edges.node.id}>
-            <h4>{edges.node.frontmatter.date}</h4>{' '}
-            tags: <PostTags tags={edges.node.frontmatter.tags} />
-            <Link to={edges.node.fields.slug}>
-              <h3>{edges.node.frontmatter.title}   </h3>
+            <div className='box'>
+             <Link to={edges.node.fields.slug}>
+              <h3>{edges.node.frontmatter.title}</h3>
             </Link>
+            tags: <PostTags tags={edges.node.frontmatter.tags} />
             <p>{edges.node.excerpt}</p>
-            <hr />
+            <div >{edges.node.frontmatter.date}{' '}</div>
+            </div>
           </div>
         )
       })}
