@@ -6,7 +6,7 @@ type Certification = {
 const Certification:React.FC<Certification> = ({}) => {
     return (
         <section id="Certification">
-            <h3>Certification</h3>
+            <h2>Certification</h2>
             <p>
             <ul className="alt">
                 <li>
