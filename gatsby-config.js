@@ -37,7 +37,7 @@ const siteMetadata = {
 
 module.exports = {
   siteMetadata,
-  pathPrefix: `/`,
+  pathPrefix: `/portfolio_site`,
   plugins: [
     'gatsby-plugin-react-helmet',
     {
