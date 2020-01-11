@@ -11,6 +11,7 @@ const Head: React.FC<HelmetProps> = () => {
           title
           description
           siteUrl
+          githubioURL
           siteLanguage
           user {
             twitter
@@ -28,6 +29,7 @@ const Head: React.FC<HelmetProps> = () => {
     title,
     description,
     siteUrl,
+    githubioURL,
     siteLanguage,
   } = data.site.siteMetadata
 
@@ -42,7 +44,7 @@ const Head: React.FC<HelmetProps> = () => {
       <meta property="og:url" content={siteUrl} />
       <meta
         property="og:image"
-        content={createAbsoluteUri(siteUrl, data.avatar.publicURL)}
+        content={createAbsoluteUri(githubioURL, data.avatar.publicURL)}
       />
       <meta property="og:image:type" content="image/jpeg" />
       <meta name="twitter:card" content="summary" />
@@ -52,7 +54,7 @@ const Head: React.FC<HelmetProps> = () => {
       <meta name="twitter:description" content={description} />
       <meta
         name="twitter:image"
-        content={createAbsoluteUri(siteUrl, data.avatar.publicURL)}
+        content={createAbsoluteUri(githubioURL, data.avatar.publicURL)}
       />
     </Helmet>
   )

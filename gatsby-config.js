@@ -3,10 +3,11 @@ const querystring = require('querystring')
 const path = require('path')
 
 const siteMetadata = {
-  title: "Takumi Ogawa - @ogady",
-  author: "Takumi Ogawa",
+  title: 'Takumi Ogawa - @ogady',
+  author: 'Takumi Ogawa',
   description: "ogady's portfolio site",
   siteUrl: 'https://ogady.github.io/portfolio_site',
+  githubioURL: 'https://ogady.github.io',
   siteLanguage: 'ja',
   shortName: 'ogady',
   skills: [
@@ -27,13 +28,12 @@ const siteMetadata = {
     speaker_deck: 'ogady',
     twitter: 'gadyma',
     facebook: 'takumi.ogawa.37266',
-    linkedin: 'takumi-ogawa-869046195'
+    linkedin: 'takumi-ogawa-869046195',
   },
   github: {
-    topic: 'my-portfolio'
+    topic: 'my-portfolio',
   },
 }
-
 
 module.exports = {
   siteMetadata,
@@ -63,7 +63,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: path.join(__dirname,`contents`),
+        path: path.join(__dirname, `contents`),
       },
     },
     `gatsby-plugin-sharp`,
@@ -89,13 +89,13 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: true,
               noInlineHighlight: false,
-            }
-          }
+            },
+          },
           // `gatsby-remark-copy-linked-files`,
         ],
       },
@@ -106,7 +106,7 @@ module.exports = {
         accessToken: process.env.QIITA_API_TOKEN,
         userName: siteMetadata.user.qiita,
         fetchPrivate: false,
-      }
+      },
     },
     {
       resolve: `gatsby-source-github-api`,
@@ -130,10 +130,10 @@ module.exports = {
         `,
         variables: {
           q: `topic:${siteMetadata.github.topic} user:${siteMetadata.user.github}`,
-          nFirst: 10
-        }
-      }
+          nFirst: 10,
+        },
+      },
     },
-    `gatsby-plugin-typescript`
+    `gatsby-plugin-typescript`,
   ],
 }
