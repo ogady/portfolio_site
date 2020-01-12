@@ -8,7 +8,7 @@ const siteMetadata = {
   description: "ogady's portfolio site",
   siteUrl: 'https://ogady.github.io',
   siteLanguage: 'ja',
-  shortName: 'ogady',
+  shortName: "ogady's site",
   skills: [
     { type: 'Go', level: 80 },
     { type: 'Python', level: 50 },
