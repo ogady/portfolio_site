@@ -45,7 +45,7 @@ module.exports = {
       options: {
         name: siteMetadata.title,
         short_name: siteMetadata.shortName,
-        start_url: '/',
+        start_url: '/portfolio_site/',
         background_color: '#4173B3',
         theme_color: '#4173B3',
         display: 'minimal-ui',
