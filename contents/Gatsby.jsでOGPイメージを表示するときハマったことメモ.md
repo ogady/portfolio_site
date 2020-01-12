@@ -97,22 +97,12 @@ const Head: React.FC<HelmetProps> = () => {
   return (
     <Helmet title={title}>
       <html lang={siteLanguage} />
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={title} />
-      <meta property="og:url" content={siteUrl} />
+        ----------中略----------
       <meta
         property="og:image"
         content={createAbsoluteUri(siteUrl, data.avatar.publicURL)} // ←（3）
       />
-      <meta property="og:image:type" content="image/jpeg" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:creator" content={`@${user.twitter}`} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:url" content={siteUrl}></meta>
-      <meta name="twitter:description" content={description} />
+        ----------中略----------
       <meta
         name="twitter:image"
         content={createAbsoluteUri(siteUrl, data.avatar.publicURL)} // ←（4）
@@ -150,7 +140,7 @@ const siteMetadata = {
   author: 'Takumi Ogawa',
   description: "ogady's portfolio site", 
   // siteUrl: 'https://ogady.github.io/portfolio_site',　// ここを↓
-  siteUrl: 'https://ogady.github.io/',　// こう！！
+  siteUrl: 'https://ogady.github.io',　// こう！！
   siteLanguage: 'ja',
   shortName: 'ogady',
   ----------中略----------
