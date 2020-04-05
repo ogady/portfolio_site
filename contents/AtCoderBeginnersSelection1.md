@@ -92,7 +92,7 @@ sList := strings.Fields(s.Text())
 
 ## ABSを解いていく
 
-### [Welcome to AtCoder](https://atcoder.jp/contests/abs/tasks/practice_1)
+### 1. [Welcome to AtCoder](https://atcoder.jp/contests/abs/tasks/practice_1)
 
 【概要】
 
@@ -117,7 +117,7 @@ func main() {
 }
 ```
 
-### [Product](https://atcoder.jp/contests/abs/tasks/abc086_a)
+### 2. [Product](https://atcoder.jp/contests/abs/tasks/abc086_a)
 
 【概要】
 
@@ -142,7 +142,7 @@ func main() {
 }
 ```
 
-### [Placing Marbles](https://atcoder.jp/contests/abs/tasks/abc081_a)
+### 3. [Placing Marbles](https://atcoder.jp/contests/abs/tasks/abc081_a)
 
 【概要】
 
@@ -167,7 +167,7 @@ func main() {
 }
 ```
 
-### [Shift only](https://atcoder.jp/contests/abs/tasks/abc081_a)
+### 4. [Shift only](https://atcoder.jp/contests/abs/tasks/abc081_a)
 
 【概要】
 

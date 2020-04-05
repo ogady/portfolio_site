@@ -4,35 +4,41 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-@import "libs/skel";
+@import 'libs/skel';
 
-@include skel-breakpoints((
-        xlarge: '(max-width: 1800px)',
-        large: '(max-width: 1280px)',
-        medium: '(max-width: 980px)',
-        small: '(max-width: 736px)',
-        xsmall: '(max-width: 480px)'
-));
+@include skel-breakpoints(
+  (
+    xlarge: '(max-width: 1800px)',
+    large: '(max-width: 1280px)',
+    medium: '(max-width: 980px)',
+    small: '(max-width: 736px)',
+    xsmall: '(max-width: 480px)',
+  )
+);
 
-@include skel-layout((
-        reset: 'full',
-        boxModel: 'border',
-        grid: ( gutters: 2.5em ),
-        conditionals: true,
-        containers: true,
-        breakpoints: (
-                large: (
-                        grid: (
-                                gutters: 2em
-                        ),
-                ),
-                small: (
-                        grid: (
-                                gutters: 1.5em
-                        ),
-                )
-        )
-));
+@include skel-layout(
+  (
+    reset: 'full',
+    boxModel: 'border',
+    grid: (
+      gutters: 2.5em,
+    ),
+    conditionals: true,
+    containers: true,
+    breakpoints: (
+      large: (
+        grid: (
+          gutters: 2em,
+        ),
+      ),
+      small: (
+        grid: (
+          gutters: 1.5em,
+        ),
+      ),
+    ),
+  )
+);
 
 $size-header-width: 32%;
 $size-header-pad: 4em;
@@ -43,14 +49,19 @@ body {
   background: _palette(bg);
 
   &.is-loading {
-    *, *:before, *:after {
+    *,
+    *:before,
+    *:after {
       @include vendor('animation', 'none !important');
       @include vendor('transition', 'none !important');
     }
   }
 }
 
-body, input, select, textarea {
+body,
+input,
+select,
+textarea {
   color: _palette(fg);
   font-family: _font(family);
   font-size: 13pt;
@@ -59,7 +70,13 @@ body, input, select, textarea {
 }
 
 a {
-  @include vendor('transition', ('color #{_duration(transition)} ease-in-out', 'border-color #{_duration(transition)} ease-in-out'));
+  @include vendor(
+    'transition',
+    (
+      'color #{_duration(transition)} ease-in-out',
+      'border-color #{_duration(transition)} ease-in-out'
+    )
+  );
   border-bottom: dotted 1px;
   color: _palette(accent1, bg);
   text-decoration: none;
@@ -71,24 +88,31 @@ a {
   }
 }
 
-strong, b {
+strong,
+b {
   color: _palette(fg-bold);
   font-weight: _font(weight-bold);
 }
 
-em, i {
+em,
+i {
   font-style: italic;
 }
 
 p {
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 (_size(element-margin) * 0.2) 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: _palette(fg-bold);
   font-weight: _font(weight-bold);
   line-height: 1em;
-  margin: 0 0 (_size(element-margin) * 0.5) 0;
+  margin: (_size(element-margin) * 0.5) 0 (_size(element-margin) * 0.5) 0;
 
   a {
     color: inherit;
@@ -159,16 +183,15 @@ blockquote {
 
 /* Code in Markdown */
 code {
-  
   font-family: _font(family-fixed);
 }
-pre[class*="language-"] {
+pre[class*='language-'] {
   display: block;
   padding: 1em;
   margin: 1.5em 0;
   overflow: auto;
 }
-.gatsby-highlight pre[class*="language-"] {
+.gatsby-highlight pre[class*='language-'] {
   font-size: 80%;
 }
 
@@ -186,7 +209,8 @@ pre[class*="language-"] {
 
 /* Section/Article */
 
-section, article {
+section,
+article {
   &.special {
     text-align: center;
   }
@@ -240,9 +264,9 @@ label {
   margin: 0 0 (_size(element-margin) * 0.5) 0;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
 select,
 textarea {
   @include vendor('appearance', 'none');
@@ -289,9 +313,9 @@ textarea {
   }
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input[type='text'],
+input[type='password'],
+input[type='email'],
 select {
   height: _size(element-height);
 }
@@ -300,8 +324,8 @@ textarea {
   padding: 0.75em;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   @include vendor('appearance', 'none');
   display: block;
   float: left;
@@ -353,7 +377,7 @@ input[type="radio"] {
   }
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   & + label {
     &:before {
       border-radius: _size(border-radius);
@@ -361,7 +385,7 @@ input[type="checkbox"] {
   }
 }
 
-input[type="radio"] {
+input[type='radio'] {
   & + label {
     &:before {
       border-radius: 100%;
@@ -371,34 +395,34 @@ input[type="radio"] {
 
 ::-webkit-input-placeholder {
   color: _palette(fg-light) !important;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 :-moz-placeholder {
   color: _palette(fg-light) !important;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 ::-moz-placeholder {
   color: _palette(fg-light) !important;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 :-ms-input-placeholder {
   color: _palette(fg-light) !important;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .formerize-placeholder {
   color: _palette(fg-light) !important;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 /* Box */
 
 .box {
-  width:90%; 
-  height:flex;
+  width: 90%;
+  height: flex;
   border-radius: _size(border-radius);
   border: solid 2px _palette(border);
   margin-bottom: _size(element-margin);
@@ -439,7 +463,10 @@ input[type="radio"] {
   position: relative;
 
   &:before {
-    @include vendor('transition', 'opacity #{_duration(transition)} ease-in-out');
+    @include vendor(
+      'transition',
+      'opacity #{_duration(transition)} ease-in-out'
+    );
     border-radius: _size(border-radius);
     content: '';
     display: block;
@@ -455,9 +482,12 @@ input[type="radio"] {
     text-align: center;
 
     &:after {
-      @include vendor('transition', 'opacity #{_duration(transition)} ease-in-out');
+      @include vendor(
+        'transition',
+        'opacity #{_duration(transition)} ease-in-out'
+      );
       border-radius: _size(border-radius);
-      border: solid 3px rgba(255,255,255,0.5);
+      border: solid 3px rgba(255, 255, 255, 0.5);
       color: #fff;
       content: 'View';
       display: inline-block;
@@ -477,11 +507,11 @@ input[type="radio"] {
 
     &:hover {
       &:after {
-        opacity: 1.0;
+        opacity: 1;
       }
 
       &:before {
-        opacity: 1.0;
+        opacity: 1;
       }
     }
   }
@@ -778,12 +808,19 @@ table {
 
 /* Button */
 
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
 .button {
   @include vendor('appearance', 'none');
-  @include vendor('transition', ('background-color #{_duration(transition)} ease-in-out', 'color #{_duration(transition)} ease-in-out', 'border-color #{_duration(transition)} ease-in-out'));
+  @include vendor(
+    'transition',
+    (
+      'background-color #{_duration(transition)} ease-in-out',
+      'color #{_duration(transition)} ease-in-out',
+      'border-color #{_duration(transition)} ease-in-out'
+    )
+  );
   background-color: transparent;
   border-radius: _size(border-radius);
   border: solid 3px _palette(border);
@@ -887,11 +924,11 @@ input[type="button"],
   @include vendor('flex-direction', 'column');
   @include vendor('align-items', 'flex-end');
   @include vendor('justify-content', 'space-between');
-  background-color:		_palette(accent2, bg);
-  background-attachment:	scroll,								fixed;
-  background-position:	top left,							top left;
-  background-repeat:		repeat,								no-repeat;
-  background-size:		auto,								auto 100%;
+  background-color: _palette(accent2, bg);
+  background-attachment: scroll, fixed;
+  background-position: top left, top left;
+  background-repeat: repeat, no-repeat;
+  background-size: auto, auto 100%;
   color: _palette(accent2, fg);
   height: 100%;
   left: 0;
@@ -911,11 +948,16 @@ input[type="button"],
     margin: 0 0 ($size-header-pad * 0.5) 0;
   }
 
-  strong, b {
+  strong,
+  b {
     color: _palette(accent2, fg-bold);
   }
 
-  h2, h3, h4, h5, h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: _palette(accent2, fg-bold);
   }
 
@@ -973,9 +1015,10 @@ input[type="button"],
 /* Main */
 
 #main {
-  margin-left: $size-header-width ;
+  margin-left: $size-header-width;
   max-width: 60em + $size-header-pad;
-  padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
+  padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad
+    $size-header-pad;
   width: calc(100% - #{$size-header-width});
 
   > section {
@@ -994,16 +1037,20 @@ input[type="button"],
 /* Poptrox */
 
 @include keyframes('spin') {
-  0% { @include vendor('transform', 'rotate(0deg)'); }
-  100% { @include vendor('transform', 'rotate(360deg)'); }
-};
+  0% {
+    @include vendor('transform', 'rotate(0deg)');
+  }
+  100% {
+    @include vendor('transform', 'rotate(360deg)');
+  }
+}
 
 .poptrox-popup {
   @include vendor('box-sizing', 'content-box');
-  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   background: #fff;
   border-radius: _size(border-radius);
-  box-shadow: 0 0.1em 0.15em 0 rgba(0,0,0,0.15);
+  box-shadow: 0 0.1em 0.15em 0 rgba(0, 0, 0, 0.15);
   overflow: hidden;
   padding-bottom: 3em;
 
@@ -1041,9 +1088,12 @@ input[type="button"],
   .nav-next,
   .nav-previous {
     @include icon;
-    @include vendor('transition', 'opacity #{_duration(transition)} ease-in-out');
-    -webkit-tap-highlight-color: rgba(255,255,255,0);
-    background: rgba(0,0,0,0.01);
+    @include vendor(
+      'transition',
+      'opacity #{_duration(transition)} ease-in-out'
+    );
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0.01);
     cursor: pointer;
     height: 100%;
     opacity: 0;
@@ -1084,8 +1134,11 @@ input[type="button"],
 
   .closer {
     @include icon;
-    @include vendor('transition', 'opacity #{_duration(transition)} ease-in-out');
-    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    @include vendor(
+      'transition',
+      'opacity #{_duration(transition)} ease-in-out'
+    );
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color: #fff;
     height: 4em;
     line-height: 4em;
@@ -1100,7 +1153,7 @@ input[type="button"],
     &:before {
       @include vendor('box-sizing', 'content-box');
       border-radius: 100%;
-      border: solid 3px rgba(255,255,255,0.5);
+      border: solid 3px rgba(255, 255, 255, 0.5);
       content: '\f00d';
       display: block;
       font-size: 1em;
@@ -1120,7 +1173,7 @@ input[type="button"],
       opacity: 0.5;
 
       &:hover {
-        opacity: 1.0;
+        opacity: 1;
       }
     }
 
@@ -1128,7 +1181,7 @@ input[type="button"],
       opacity: 0.5;
 
       &:hover {
-        opacity: 1.0;
+        opacity: 1;
       }
     }
   }
@@ -1137,7 +1190,6 @@ input[type="button"],
 /* Touch */
 
 body.is-touch {
-
   .image {
     &.thumb {
       &:before {
@@ -1151,45 +1203,46 @@ body.is-touch {
   }
 
   #header {
-    background-attachment:	scroll;
-    background-size:		auto, cover;
+    background-attachment: scroll;
+    background-size: auto, cover;
   }
 
   .poptrox-popup {
     .nav-next,
     .nav-previous,
     .closer {
-      opacity: 1.0 !important;
+      opacity: 1 !important;
     }
   }
-
 }
 
 /* XLarge */
 
 @include breakpoint(xlarge) {
-
   /* Basic */
 
-  body, input, select, textarea {
+  body,
+  input,
+  select,
+  textarea {
     font-size: 11pt;
   }
   .box {
-    width:100%; 
+    width: 100%;
   }
 }
 
 /* Large */
 
 @include breakpoint(large) {
-
   $size-header-width: 30%;
   $size-header-pad: 3em;
 
   /* Header */
 
   #header {
-    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
+    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad
+      $size-header-pad;
     width: $size-header-width;
 
     h1 {
@@ -1220,21 +1273,25 @@ body.is-touch {
   #main {
     margin-left: $size-header-width;
     max-width: 60em + $size-header-pad;
-    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad $size-header-pad;
+    padding: ($size-header-pad * 1.5) $size-header-pad $size-header-pad
+      $size-header-pad;
     width: calc(100% - #{$size-header-width});
   }
-
 }
 
 /* Medium */
 
 @include breakpoint(medium) {
-
   $size-header-pad: 4em;
 
   /* Basic */
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     br {
       display: none;
     }
@@ -1255,9 +1312,9 @@ body.is-touch {
   /* Header */
 
   #header {
-    background-attachment:	scroll;
-    background-position:	top left,	center center;
-    background-size:		auto,		cover;
+    background-attachment: scroll;
+    background-position: top left, center center;
+    background-size: auto, cover;
     left: auto;
     padding: ($size-header-pad * 1.5) $size-header-pad;
     position: relative;
@@ -1280,7 +1337,8 @@ body.is-touch {
   #footer {
     bottom: auto;
     left: auto;
-    padding: $size-header-pad $size-header-pad ($size-header-pad * 1.5) $size-header-pad;
+    padding: $size-header-pad $size-header-pad ($size-header-pad * 1.5)
+      $size-header-pad;
     position: relative;
     text-align: center;
     width: 100%;
@@ -1309,13 +1367,11 @@ body.is-touch {
     padding: ($size-header-pad * 1.5) $size-header-pad;
     width: 100%;
   }
-
 }
 
 /* Small */
 
 @include breakpoint(small) {
-
   $size-header-pad: 0.5em;
 
   /* Basic */
@@ -1334,7 +1390,8 @@ body.is-touch {
 
   /* Section/Article */
 
-  section, article {
+  section,
+  article {
     &.special {
       text-align: center;
     }
@@ -1381,7 +1438,8 @@ body.is-touch {
   /* Main */
 
   #main {
-    padding: ($size-header-pad * 1.5) $size-header-pad (($size-header-pad * 1.5) - _size(element-margin)) $size-header-pad;
+    padding: ($size-header-pad * 1.5) $size-header-pad
+      (($size-header-pad * 1.5) - _size(element-margin)) $size-header-pad;
 
     > section {
       margin: ($size-header-pad * 1.5) 0 0 0;
@@ -1401,13 +1459,11 @@ body.is-touch {
       }
     }
   }
-
 }
 
 /* XSmall */
 
 @include breakpoint(xsmall) {
-
   $size-header-pad: 0.4em;
 
   /* List */
@@ -1476,12 +1532,11 @@ body.is-touch {
     }
   }
 
-    /* Main */
+  /* Main */
 
-    #main {
-      padding: ($size-header-pad * 2.5) 1em 1em 1em;
-    }
-
+  #main {
+    padding: ($size-header-pad * 2.5) 1em 1em 1em;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -1494,6 +1549,5 @@ body.is-touch {
     width: 100%;
   }
 }
-
 
 @import 'libs/customBase';
