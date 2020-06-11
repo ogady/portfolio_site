@@ -98,7 +98,7 @@ func main() {
 }
 ```
 
-### 10. [CTraveling](https://atcoder.jp/contests/abs/tasks/arc089_a)
+### 10. [Traveling](https://atcoder.jp/contests/abs/tasks/arc089_a)
 
 【概要】
 
