@@ -22,9 +22,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ repos, user }) => {
       <li key={id}>
         <a href={url}>{name}</a>
         <br />
-        <span>
-          {description}
-        </span>
+        <span>{description}</span>
       </li>
     )
   })
