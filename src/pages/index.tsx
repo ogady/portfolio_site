@@ -9,6 +9,7 @@ import Head from '../components/Head'
 import Career from '../components/abouts/Career'
 import Certification from '../components/abouts/Certification'
 import SkillCharts from '../components/abouts/SkillChart'
+import TechBlog from '../components/abouts/TechBlog'
 
 type User = {
   name: string
@@ -63,7 +64,10 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
       <Header user={user} />
       <div id="main">
         <h1>About</h1>
-        <SkillCharts backgroundColor="rgba( 58,126,242 , 0.30 )" skills={skills} />
+        <SkillCharts
+          backgroundColor="rgba( 58,126,242 , 0.30 )"
+          skills={skills}
+        />
         <Career />
         {repos && repos.length > 0 && (
           <GitHubRepos repos={repos} user={user.github} />
@@ -71,6 +75,7 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
         {qiitaPosts && qiitaPosts.length > 0 && (
           <QiitaItems posts={qiitaPosts} user={user.qiita} />
         )}
+        <TechBlog />
         <Certification />
       </div>
     </Layout>

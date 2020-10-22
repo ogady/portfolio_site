@@ -8,16 +8,58 @@ const Career: React.FC<CareerProps> = ({}) => {
       <p>
         <ul>
           <li>
-            <h4>
+            <h3>
               &nbsp;
               <a href={`http://www.mediado.jp/mediado/`}>
                 株式会社メディアドゥ &nbsp;
               </a>
               (Oct, 2019〜)
-            </h4>
+            </h3>
             <ul>
               <li>
-                <strong>電子書籍取次システム移行案件</strong>
+                <h4>電子書籍取次システムクラウドリフト案件(May, 2020〜)</h4>
+                <ul>
+                  <li>TerraformによるAWSインフラ構築</li>
+                  <li>
+                    新規追加機能をフロントエンド〜インフラまで開発（フロントエンド:Angular、バックエンド:Go）
+                  </li>
+                  <li>
+                    既存PHPからのAWSリソースへのアクセスや認証機能をGoのAPIに切り出し、マイクロサービス化
+                  </li>
+                  <li>PHPを5系から7系へバージョンアップ対応</li>
+                  <div className="box">
+                    【使用技術】
+                    <ul>
+                      <li>使用言語：Go, PHP, TypeScript(Angular), Python</li>
+                      <li>
+                        インフラ：AWS(Fargete, Aurora, EFS, SQS, Lambda, EC2,
+                        S3, CodePipeline etc...)
+                      </li>
+                      <li>Webサーバー：nginx</li>
+                      <li>資産管理：GitHub</li>
+                    </ul>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <h4>Datadog検証(Apr, 2020〜June, 2020)</h4>
+                <ul>
+                  <li>兼務でSREチームにJoinし、Datadogを用いたコンテナ監視</li>
+                  <li>GoアプリケーションのAPM監視の検証</li>
+                  <li>Datadogログ集約、アラート機能検証</li>
+                  <div className="box">
+                    【使用技術】
+                    <ul>
+                      <li>使用言語：Go</li>
+                      <li>インフラ：AWS</li>
+                      <li>監視基盤：Datadog</li>
+                      <li>資産管理：GitHub</li>
+                    </ul>
+                  </div>
+                </ul>
+              </li>
+              <li>
+                <h4>電子書籍取次システム案件(Oct, 2019〜June, 2020)</h4>
                 <ul>
                   <li>
                     電子書籍取次システム移行用のマイグレーションシステムの開発
@@ -29,7 +71,8 @@ const Career: React.FC<CareerProps> = ({}) => {
                     <ul>
                       <li>使用言語：Go</li>
                       <li>
-                        基盤：AWS(EC2, RDS, DynamoDB, SQS, Lambda, CDK etc...)
+                        インフラ：AWS(EC2, RDS, DynamoDB, SQS, Lambda, CDK
+                        etc...)
                       </li>
                       <li>資産管理：GitHub</li>
                     </ul>
@@ -40,19 +83,17 @@ const Career: React.FC<CareerProps> = ({}) => {
           </li>
           <li>
             <hr />
-            <h4>
+            <h3>
               &nbsp;
               <a href={`https://www.mizuho-ir.co.jp`}>
                 みずほ情報総研株式会社&nbsp;
               </a>
               (Apr, 2017 〜 July, 2019)
-            </h4>
+            </h3>
 
             <ul>
               <li>
-                <strong>
-                  FintechWG(モダン技術知見習得を目的とする、社内施策)
-                </strong>
+                <h4>FintechWG(モダン技術知見習得を目的とする、社内施策)</h4>
                 <ul>
                   <li>
                     某空港管理会社の案件で、フードコートのキャッシュレスWebアプリケーションのプロトタイプを作成。
@@ -89,7 +130,7 @@ const Career: React.FC<CareerProps> = ({}) => {
             </ul>
             <ul>
               <li>
-                <strong>全銀24時間365日対応案件</strong>
+                <h4>全銀24時間365日対応案件</h4>
                 <ul>
                   <li>
                     他行間の内国為替取引を担う全銀システムのサービス24時間化に伴い、みずほ銀行の全銀接続機能のシステムアップグレードを行うもの。主にPMとして、要件定義、基本設計、詳細設計、単体テスト、結合テスト、シナリオテスト、運用テストを推進。
