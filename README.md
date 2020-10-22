@@ -76,7 +76,7 @@ jobs:
       - name: build
         run: npm run build
         env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+          READ_GITHUB_API_TOKEN: ${{ secrets.READ_GITHUB_API_TOKEN }}
           QIITA_API_TOKEN: ${{ secrets.QIITA_API_TOKEN }}
           RSS2JSON_API_TOKEN: ${{ secrets.RSS2JSON_API_TOKEN }}
 
