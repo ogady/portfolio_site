@@ -25,7 +25,7 @@ const siteMetadata = {
     github: 'ogady',
     qiita: 'ogady',
     speaker_deck: 'ogady',
-    twitter: 'gadyma',
+    twitter: '_ogady_',
     facebook: 'takumi.ogawa.37266',
     linkedin: 'takumi-ogawa-869046195',
   },
