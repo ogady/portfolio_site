@@ -1,7 +1,7 @@
 import React from 'react'
 
 type CareerProps = {}
-const Career: React.FC<CareerProps> = ({}) => {
+const Career: React.FC<CareerProps> = ({ }) => {
   return (
     <section id="Career">
       <h2>Career</h2>
@@ -32,7 +32,7 @@ const Career: React.FC<CareerProps> = ({}) => {
                     <ul>
                       <li>使用言語：Go, PHP, TypeScript(Angular), Python</li>
                       <li>
-                        インフラ：AWS(Fargete, Aurora, EFS, SQS, Lambda, EC2,
+                        インフラ：AWS(Fargate, Aurora, EFS, SQS, Lambda, EC2,
                         S3, CodePipeline etc...)
                       </li>
                       <li>Webサーバー：nginx</li>
