@@ -129,6 +129,19 @@ export const query = graphql`
         }
       }
     }
+    allSlides(filter: { items: { elemMatch: { title: { ne: null } } } }) {
+      edges {
+        node {
+          items {
+            guid
+            title
+            link
+            thumbnail
+            pubDate
+          }
+        }
+      }
+    }
     allGithubData {
       edges {
         node {
