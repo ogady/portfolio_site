@@ -10,7 +10,7 @@ import Career from '../components/abouts/Career'
 import Certification from '../components/abouts/Certification'
 import SkillCharts from '../components/abouts/SkillChart'
 import TechBlog from '../components/abouts/TechBlog'
-import Slides from '../components/Slides'
+import Slides, { Item as SlideItem } from '../components/abouts/Slides'
 
 type User = {
   name: string
@@ -41,6 +41,15 @@ type HomeIndexProps = {
                 edges: Repo[]
               }
             }
+          }
+        }
+      ]
+    }
+    allSlides: {
+      edges: [
+        {
+          node: {
+            items: SlideItem[]
           }
         }
       ]
