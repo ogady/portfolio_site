@@ -32,7 +32,16 @@ const siteMetadata = {
   github: {
     topic: 'my-portfolio',
   },
+  speaker_deck: {
+    slides_count: '6'
+  }
 }
+
+const qs = querystring.stringify({
+  rss_url: `https://speakerdeck.com/${siteMetadata.user.speaker_deck}.atom`,
+  count: siteMetadata.speaker_deck.slides_count,
+  api_key: process.env.RSS2JSON_API_TOKEN
+})
 
 module.exports = {
   siteMetadata,

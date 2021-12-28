@@ -26,6 +26,7 @@ jobs:
         env:
           READ_GITHUB_API_TOKEN: ${{ secrets.READ_GITHUB_API_TOKEN }}
           QIITA_API_TOKEN: ${{ secrets.QIITA_API_TOKEN }}
+          RSS2JSON_API_TOKEN: ${{ secrets.RSS2JSON_API_TOKEN }}
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v2.3.2
