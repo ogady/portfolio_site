@@ -51,6 +51,10 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
           </p>
           <p>
             Member of &nbsp;
+            <a href={`https://sre-lounge.connpass.com/`}>
+              <b>SRE Lounge</b>
+            </a>
+            /
             <a href={`https://sre-next.dev/`}>
               <b>SRE NEXT</b>
             </a>
