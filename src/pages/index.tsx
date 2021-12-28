@@ -10,6 +10,7 @@ import Career from '../components/abouts/Career'
 import Certification from '../components/abouts/Certification'
 import SkillCharts from '../components/abouts/SkillChart'
 import TechBlog from '../components/abouts/TechBlog'
+import Slides from '../components/Slides'
 
 type User = {
   name: string
@@ -57,6 +58,9 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
   const qiitaPosts = data.allQiitaPost.edges
   const repos = data.allGithubData.edges[0].node.data.allGithubData.edges
   const { user, skills } = data.site.siteMetadata
+  const slides = data.allSlides.edges[0].node.items.filter(function (item, index) {
+    return (index <= 4);
+  });
 
   return (
     <Layout>
@@ -75,8 +79,11 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
         {qiitaPosts && qiitaPosts.length > 0 && (
           <QiitaItems posts={qiitaPosts} user={user.qiita} />
         )}
-        <TechBlog />
         <Certification />
+        <TechBlog />
+        {slides && slides.length > 0 && (
+          <Slides items={slides} user={user.speaker_deck} />
+        )}
       </div>
     </Layout>
   )
@@ -98,6 +105,7 @@ export const query = graphql`
           qiita
           twitter
           facebook
+          speaker_deck
           linkedin
         }
       }
