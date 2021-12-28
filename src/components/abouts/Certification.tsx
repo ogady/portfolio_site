@@ -1,12 +1,15 @@
 import React from 'react'
 
 type Certification = {}
-const Certification: React.FC<Certification> = ({}) => {
+const Certification: React.FC<Certification> = ({ }) => {
   return (
     <section id="Certification">
       <h2>Certification</h2>
       <p>
         <ul className="alt">
+          <li>
+            <h4>2021-12 AWS Certified Data Analytics - Specialty</h4>
+          </li>
           <li>
             <h4>2019-07 AWS Certified Solutions Architect Associate</h4>
           </li>
