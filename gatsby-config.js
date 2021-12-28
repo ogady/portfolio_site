@@ -117,6 +117,17 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-apiserver",
+      options: {
+        url: `https://api.rss2json.com/v1/api.json?${qs}`,
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        name: 'Slides'
+      }
+    },
+    {
       resolve: `gatsby-source-github-api`,
       options: {
         token: process.env.READ_GITHUB_API_TOKEN,
