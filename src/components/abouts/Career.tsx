@@ -13,7 +13,7 @@ const Career: React.FC<CareerProps> = ({ }) => {
               <a href={`http://www.mediado.jp/mediado/`}>
                 株式会社メディアドゥ &nbsp;
               </a>
-              (Oct, 2019〜)
+              (Oct, 2019〜 May, 2021)
             </h3>
             <ul>
               <li>
