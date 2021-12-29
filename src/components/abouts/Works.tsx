@@ -8,10 +8,10 @@ type WorksProps = {
 const Works: React.FC<WorksProps> = ({ }) => {
     const data = useStaticQuery(graphql`
     {
-      avatar: file(relativePath: { eq: "Pixiv.png" }) {
+      pixiv: file(relativePath: { eq: "Pixiv.png" }) {
         childImageSharp {
-          fixed(width: 652, height: 674) {
-            ...GatsbyImageSharpFixed
+          fluid(maxHeight: 393) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -31,7 +31,7 @@ const Works: React.FC<WorksProps> = ({ }) => {
                 </article>
                 <article className="4u 12u$(xsmall) work-item" >
                     <a href={`https://www.pixiv.net/users/6571484`} className="image fit thumb">
-                        <Img fixed={data.avatar.childImageSharp.fixed} />
+                        <Img fixed={data.pixiv.childImageSharp.fluid} />
                     </a>
                     <a href={`https://www.pixiv.net/users/6571484`} className="slide-title">
                         <h3>Paintings(Pixiv)</h3>
