@@ -10,7 +10,7 @@ const Works: React.FC<WorksProps> = ({ }) => {
     {
       pixiv: file(relativePath: { eq: "Pixiv.png" }) {
         childImageSharp {
-          fluid(maxHeight: 100) {
+          fluid(maxWidth: 100) {
             ...GatsbyImageSharpFluid
           }
         }
