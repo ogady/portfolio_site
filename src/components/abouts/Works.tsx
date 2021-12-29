@@ -1,10 +1,17 @@
 import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import Img from 'gatsby-image'
 
 type WorksProps = {
 }
 
 const Works: React.FC<WorksProps> = ({ }) => {
-
+    const data = useStaticQuery(graphql`
+    {
+      avatar: file(relativePath: { eq: "Pixiv.png" }) {
+      }
+    }
+  `)
     return (
         <section id="Works">
             <h2>Works</h2>
@@ -19,7 +26,7 @@ const Works: React.FC<WorksProps> = ({ }) => {
                 </article>
                 <article className="4u 12u$(xsmall) work-item" >
                     <a href={`https://www.pixiv.net/users/6571484`} className="image fit thumb">
-                        <img src={`./../../assets/images/Pixiv.png`} alt="" />
+                        <Img fixed={data.avatar} />
                     </a>
                     <a href={`https://www.pixiv.net/users/6571484`} className="slide-title">
                         <h3>Paintings(Pixiv)</h3>
