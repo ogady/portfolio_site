@@ -11,6 +11,7 @@ import Certification from '../components/abouts/Certification'
 import SkillCharts from '../components/abouts/SkillChart'
 import TechBlog from '../components/abouts/TechBlog'
 import Slides, { Item as SlideItem } from '../components/abouts/Slides'
+import Works from '../components/abouts/Works'
 
 type User = {
   name: string
@@ -85,14 +86,15 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
         {repos && repos.length > 0 && (
           <GitHubRepos repos={repos} user={user.github} />
         )}
-        {qiitaPosts && qiitaPosts.length > 0 && (
-          <QiitaItems posts={qiitaPosts} user={user.qiita} />
-        )}
         <Certification />
-        <TechBlog />
         {slides && slides.length > 0 && (
           <Slides items={slides} user={user.speaker_deck} />
         )}
+        <TechBlog />
+        {qiitaPosts && qiitaPosts.length > 0 && (
+          <QiitaItems posts={qiitaPosts} user={user.qiita} />
+        )}
+        <Works />
       </div>
     </Layout>
   )

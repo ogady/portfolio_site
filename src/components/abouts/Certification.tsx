@@ -3,8 +3,8 @@ import React from 'react'
 type Certification = {}
 const Certification: React.FC<Certification> = ({ }) => {
   return (
-    <section id="Certification">
-      <h2>Certification</h2>
+    <section id="Certifications">
+      <h2>Certifications</h2>
       <p>
         <ul className="alt">
           <li>
