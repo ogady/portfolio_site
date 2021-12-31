@@ -114,9 +114,9 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 9月に始めて、今3ヶ月くらいなのですが仕事の合間を縫って社内の人のVRアバターなどを描いています。
 めちゃたのしー
 
-<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104592" style="top: 0; left: 0; width: 70%; height: 80%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104592" style="top: 0; left: 0; width: 70%; height: 90%; position: absolute; border: 0;" allowfullscreen></iframe></div>
 
-<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104624" style="top: 0; left: 0; width: 70%; height: 80%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104624" style="top: 0; left: 0; width: 70%; height: 90%; position: absolute; border: 0;" allowfullscreen></iframe></div>
 
 ### VR周りのこと
 
