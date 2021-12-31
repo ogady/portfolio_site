@@ -67,7 +67,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 去年に引き続き、SRE Loungeのイベントに運営として参加し、オンライン開催を行いました。
 同イベントで久々の登壇も行い、結構反響を得ることができました。
-始めてのアバター登壇だったのですが、顔出さなくていいのであまり緊張せずにすみました。これはいいハック。
+初めてのアバター登壇だったのですが、顔出さなくていいのであまり緊張せずにすみました。これはいいハック。
 
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/db132c3d7dd24eb3a5e187c8da69f321" title="PairsにおけるSLI/SLO再定義" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
 
@@ -120,7 +120,9 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 ### VR周りのこと
 
-エウレカに入社してから、[boxp](https://twitter.com/b0xp2)に先導されてVRChat、NeosVRに遊びに行っています。エウレカはエンジニアの1/3くらいはアバターでオンラインMTGしてたりするので、僕も入社してすぐに、LuppetとUltraleap IR170などを購入し、仲間入りしました。もともと前職でもiPhoneを使ってオンラインアバターMTGをやっていたのですが、手のトラッキングできなかったり、セットアップのめんどくささがあったので、これで完全体に。（諭吉5人近く犠牲になったが全然後悔していないです。）
+エウレカに入社してから、[boxp](https://twitter.com/b0xp2)に先導されてVRChat、NeosVRに遊びに行っています。
+
+エウレカはエンジニアの1/3くらいはアバターでオンラインMTGしてたりするので、僕も入社してすぐに、LuppetとUltraleap IR170などを購入し、仲間入りしました。もともと前職でもiPhoneを使ってオンラインアバターMTGをやっていたのですが、手のトラッキングできなかったり、セットアップのめんどくささがあったので、これで完全体に。（諭吉5人近く犠牲になったが全然後悔していないです。）
 
 VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
 
