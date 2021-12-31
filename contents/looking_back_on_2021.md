@@ -127,7 +127,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 アバターも作ったよ。
 
-<div class="iframely-responsive" style="padding-bottom: 52.5%; padding-top: 120px;"><article className="4u 12u$(xsmall) work-item" ><a href="https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678" className="image fit thumb"><img src="https://vroid-hub.pximg.net/c/300x400_a2_g5/images/portrait_images/1606028/7154001257129230114.png" alt="VRoid Model" /></article></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><article className="4u 12u$(xsmall) work-item" ><a href="https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678" className="image fit thumb"><img src="https://vroid-hub.pximg.net/c/300x400_a2_g5/images/portrait_images/1606028/7154001257129230114.png" alt="VRoid Model" /></article></div>
 
 VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
 
