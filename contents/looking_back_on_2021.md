@@ -124,6 +124,10 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 エウレカはエンジニアの1/3くらいはアバターでオンラインMTGしてたりするので、僕も入社してすぐに、LuppetとUltraleap IR170などを購入し、仲間入りしました。もともと前職でもiPhoneを使ってオンラインアバターMTGをやっていたのですが、手のトラッキングできなかったり、セットアップのめんどくささがあったので、これで完全体に。（諭吉5人近く犠牲になったが全然後悔していないです。）
 
+アバターも作ったよ。
+
+<div class="iframely-embed"><div class="iframely-responsive" style="padding-bottom: 52.5%; padding-top: 120px;"><a href="https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678" data-iframely-url="//cdn.iframe.ly/aM8JVw1"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+
 VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
 
 # 2022年の抱負
