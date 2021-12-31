@@ -15,7 +15,7 @@ tags: ['others']
 
 # 2021年の振り返り
 
-### コアシステムのクラウドリフト（メディアドゥ時代）
+## コアシステムのクラウドリフト（メディアドゥ時代）
 
 メディアドゥのコアシステムのクラウドリフトに携わってきました。
 
@@ -31,7 +31,7 @@ AWSのインフラ構築時は自分ともう一人がメインでやってい�
 
 このあたりで、SRE Lounge/NEXTの関わり、クラウドリフトのインフラ構築をやる中でSRE領域の専門性を高めたいという思いが募ってきました。
 
-### 転職（メディアドゥ -> エウレカ）
+## 転職（メディアドゥ -> エウレカ）
 
 メディアドゥでのクラウドリフトが落ち着いたタイミングで、エウレカで働いている[@nari](https://twitter.com/fukubaka0825)から声をかけてもらって、エウレカにSREとして転職しました。
 
@@ -46,7 +46,7 @@ AWSのインフラ構築時は自分ともう一人がメインでやってい�
 
 また、業務中Slack Huddleに常駐しているといろんなチームの人が話しにきてくれるので完全リモート下でもコミュニケーションに困ることはありませんでした。
 
-### エウレカでSREとして半年何をしてきたか
+## エウレカでSREとして半年何をしてきたか
 
 まだ入社して半年ですが、主に
 
@@ -63,7 +63,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 チーム内外の人たちにもよくしていただき、いい会社に入ったなぁと強く感じています。
 
-### SRE Lounge #13開催
+## SRE Lounge #13開催
 
 去年に引き続き、SRE Loungeのイベントに運営として参加し、オンライン開催を行いました。
 同イベントで久々の登壇も行い、結構反響を得ることができました。
@@ -71,7 +71,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/db132c3d7dd24eb3a5e187c8da69f321" title="PairsにおけるSLI/SLO再定義" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
 
-### 技術的なアウトプット
+## 技術的なアウトプット
 
 上記登壇に加え、ブログを2本執筆しました。
 
@@ -114,9 +114,9 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 9月に始めて、今3ヶ月くらいなのですが仕事の合間を縫って社内の人のVRアバターなどを描いています。
 めちゃたのしー
 
-<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104592" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104592" style="top: 0; left: 0; width: 50%; height: 50%; position: absolute; border: 0;" allowfullscreen></iframe></div>
 
-<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104624" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104624" style="top: 0; left: 0; width: 50%; height: 50%; position: absolute; border: 0;" allowfullscreen></iframe></div>
 
 ### VR周りのこと
 
@@ -124,9 +124,9 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
 
-## 2022年の抱負
+# 2022年の抱負
 
-### 業務内のこと
+## 業務内のこと
 
 来年のSREチームとしては、Policy as Codeやk8sへの本格移行などがキーワードとして上がっているため、冬休み中にキャッチアップをしないと。
 
@@ -135,17 +135,17 @@ CCチームのメトリクスとの連携や、クライアントメトリクス
 
 なので、しばらくはエウレカSREチームでSREぽいことをやっていく予定です。
 
-### エンジニアとして
+## エンジニアとして
 
 これまで、エンジニアキャリアについては結構成り行きに任せて動いていたのですが、そろそろちゃんとゴールを描きなからやっていこうと思います。
 
 来年は、SREとして今たりてないと感じるところを書き出してそれを重点的に伸ばしていくような時期にしたいと思います。副業なども視野に入れてエウレカでは得ることができないような経験も積みたいですね。
 
-### 趣味のこと
+## 趣味のこと
 
 ここは変わらず、細々とイラスト続けつつ、アニメ/漫画/映画をみていこうかな
 
-### 来年のキーワード
+## 来年のキーワード
 
 - k8s
 - PaC
