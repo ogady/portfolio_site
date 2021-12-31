@@ -33,7 +33,7 @@ AWSのインフラ構築時は自分ともう一人がメインでやってい�
 
 #### 転職（メディアドゥ -> エウレカ）
 
-メディアドゥでのクラウドリフトが落ち着いたタイミングで、エウレカで働いている[@Takashi Narikawa](https://twitter.com/fukubaka0825)から声をかけてもらって、エウレカにSREとして転職しました。
+メディアドゥでのクラウドリフトが落ち着いたタイミングで、エウレカで働いている[@nari](https://twitter.com/fukubaka0825)から声をかけてもらって、エウレカにSREとして転職しました。
 
 エウレカに入社して感じたこととしては、
 
@@ -67,6 +67,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 去年に引き続き、SRE Loungeのイベントに運営として参加し、オンライン開催を行いました。
 同イベントで久々の登壇も行い、結構反響を得ることができました。
+始めてのアバター登壇だったのですが、顔出さなくていいのであまり緊張せずにすみました。これはいいハック。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_hfRB_uVqOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -116,6 +117,12 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104592" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div>
 
 <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 52.5%;"><iframe src="https://embed.pixiv.net/oembed_iframe.php?type=illust&id=95104624" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div>
+
+#### VR周りのこと
+
+エウレカに入社してから、[boxp](https://twitter.com/b0xp2)に先導されてVRChat、NeosVRに遊びに行っています。エウレカはエンジニアの1/3くらいはアバターでオンラインMTGしてたりするので、僕も入社してすぐに、LuppetとUltraleap IR170などを購入し、仲間入りしました。もともと前職でもiPhoneを使ってオンラインアバターMTGをやっていたのですが、手のトラッキングできなかったり、セットアップのめんどくささがあったので、これで完全体に。（諭吉5人近く犠牲になったが全然後悔していないです。）
+
+VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
 
 ### 2022年の抱負
 
