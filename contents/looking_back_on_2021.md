@@ -69,7 +69,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 同イベントで久々の登壇も行い、結構反響を得ることができました。
 始めてのアバター登壇だったのですが、顔出さなくていいのであまり緊張せずにすみました。これはいいハック。
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_hfRB_uVqOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/db132c3d7dd24eb3a5e187c8da69f321" title="PairsにおけるSLI/SLO再定義" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 560px; height: 314px;" data-ratio="1.78343949044586"></iframe>
 
 ### 技術的なアウトプット
 
@@ -77,7 +77,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 <div style="left: 0; width: 100%; height: 190px; position: relative;"><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Ftechdo.mediado.jp%2Fentry%2F2021%2F05%2F25%2F110000" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no"></iframe></div>
 
-<script async src="https://static.medium.com/embed.js"></script><a class="m-story" href="https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11">ケーススタディで改めて学ぶ、S3をセキュアに運用するために気をつけるべきこと</a>
+<div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11" data-iframely-url="//cdn.iframe.ly/5HGfq3u?card=small"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
 
 ### 趣味とか
 
