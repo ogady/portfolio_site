@@ -75,9 +75,8 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 上記登壇に加え、ブログを2本執筆しました。
 
-<div style="left: 0; width: 100%; height: 190px; position: relative;"><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Ftechdo.mediado.jp%2Fentry%2F2021%2F05%2F25%2F110000" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no"></iframe></div>
-
-<div class="iframely-embed"><div class="iframely-responsive" style="height: 140px; padding-bottom: 0;"><a href="https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11" data-iframely-url="//cdn.iframe.ly/5HGfq3u?card=small"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+- [Macで簡単にアバターオンラインミーティングする方法](https://techdo.mediado.jp/entry/2021/05/25/110000)
+- [ケーススタディで改めて学ぶ、S3をセキュアに運用するために気をつけるべきこと](https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11)
 
 ## 趣味とか
 
@@ -128,7 +127,7 @@ SREチームはメンバーの協力や、ドキュメント/IaCが整備され�
 
 アバターも作ったよ。
 
-<div class="iframely-embed"><div class="iframely-responsive" style="padding-bottom: 52.5%; padding-top: 120px;"><a href="https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678" data-iframely-url="//cdn.iframe.ly/aM8JVw1"></a></div></div><script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+<div class="iframely-embed"><div class="iframely-responsive" style="padding-bottom: 52.5%; padding-top: 120px;"><article className="4u 12u$(xsmall) work-item" ><a href={`https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678`} className="image fit thumb"><img src={`https://vroid-hub.pximg.net/c/300x400_a2_g5/images/portrait_images/1606028/7154001257129230114.png`} alt="VRoid Model" /></a><a href={`https://hub.vroid.com/users/6571484`} className="slide-title"><h3>VRoid Models</h3></a></article></div>
 
 
 VTuberには今の所そこまで強く沼っていないのですが、同僚の[@nari](https://twitter.com/fukubaka0825)の沼りかたがえぐいのでそのうち布教されてしまうかもしれない。
