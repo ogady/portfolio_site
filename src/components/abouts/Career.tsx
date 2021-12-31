@@ -15,6 +15,17 @@ const Career: React.FC<CareerProps> = ({ }) => {
               </a>
               (Jun, 2021〜)
             </h3>
+            <ul>
+              <li>
+                <h4>SREチーム(Jun, 2021~)</h4>
+                <ul>
+                  <li>スケールに伴うメインプロダクトAPIのサブネットの拡張</li>
+                  <li>SLI/SLOの再構築・再定義</li>
+                  <li>S3セキュリティ強化</li>
+                  <li>Terraformパイプラインの改善</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <h3>
@@ -23,6 +34,7 @@ const Career: React.FC<CareerProps> = ({ }) => {
                 株式会社メディアドゥ &nbsp;
               </a>
               (Oct, 2019〜 May, 2021)
+
             </h3>
             <ul>
               <li>
