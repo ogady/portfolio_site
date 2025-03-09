@@ -44,24 +44,6 @@ const TechBlog: React.FC<TechBlog> = ({ }) => {
             </a>
           </li>
           <li>
-            2021-12-18
-            <a
-              className="item-title"
-              href="https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11"
-            >
-              ケーススタディで改めて学ぶ、S3をセキュアに運用するために気をつけるべきこと
-            </a>
-          </li>
-          <li>
-            2021-12-18
-            <a
-              className="item-title"
-              href="https://medium.com/eureka-engineering/s3-security-case-study-6c143ae8ba11"
-            >
-              ケーススタディで改めて学ぶ、S3をセキュアに運用するために気をつけるべきこと
-            </a>
-          </li>
-          <li>
             2020-08-05
             <a
               className="item-title"
