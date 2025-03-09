@@ -53,17 +53,6 @@ const Skills: React.FC<SkillsProps> = ({ }) => {
             <li>Datadog</li>
           </ul>
         </div>
-
-        <div className="skill-category">
-          <h3>その他</h3>
-          <ul className="skill-list">
-            <li>Git / GitHub</li>
-            <li>Nginx</li>
-            <li>API設計</li>
-            <li>セキュリティ</li>
-            <li>ChatOps (Slack API)</li>
-          </ul>
-        </div>
       </div>
     </section>
   )
