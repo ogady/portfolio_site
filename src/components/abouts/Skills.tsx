@@ -7,7 +7,7 @@ const Skills: React.FC<SkillsProps> = ({ }) => {
       <h2>Skills</h2>
       <div className="skill-container">
         <div className="skill-category">
-          <h3>プログラミング言語</h3>
+          <h3>Programing Languages</h3>
           <ul className="skill-list">
             <li>Go</li>
             <li>TypeScript / JavaScript</li>
@@ -17,7 +17,7 @@ const Skills: React.FC<SkillsProps> = ({ }) => {
         </div>
 
         <div className="skill-category">
-          <h3>インフラ / クラウド</h3>
+          <h3>Infrastructure / Public Cloud</h3>
           <ul className="skill-list">
             <li>AWS / Google Cloud</li>
             <li>Kubernetes</li>
@@ -28,7 +28,7 @@ const Skills: React.FC<SkillsProps> = ({ }) => {
         </div>
 
         <div className="skill-category">
-          <h3>Data基盤</h3>
+          <h3>Data Platform</h3>
           <ul className="skill-list">
             <li>BigQuery</li>
             <li>dbt</li>
@@ -37,7 +37,7 @@ const Skills: React.FC<SkillsProps> = ({ }) => {
         </div>
 
         <div className="skill-category">
-          <h3>データベース</h3>
+          <h3>Database</h3>
           <ul className="skill-list">
             <li>MySQL</li>
             <li>DynamoDB</li>
