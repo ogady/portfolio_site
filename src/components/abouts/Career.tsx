@@ -27,6 +27,7 @@ const Career: React.FC<CareerProps> = ({ }) => {
                   <li>MySQL v8アップグレード</li>
                   <li>Progressive delivery導入</li>
                   <li>Pull Requestテスト環境自動生成機構構築</li>
+                  <li>Data分析基盤の運用（Bigquery, dbt, dagster）</li>
                 </ul>
               </li>
             </ul>
