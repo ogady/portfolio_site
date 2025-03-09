@@ -22,8 +22,8 @@ const Works: React.FC<WorksProps> = ({ }) => {
             <h2>Works</h2>
             <div className="row">
                 <article className="4u 12u$(xsmall) work-item" >
-                    <a href={`https://hub.vroid.com/characters/1171131286256569911/models/7163269262376855678`} className="image fit thumb">
-                        <img src={`https://vroid-hub.pximg.net/c/300x400_a2_g5/images/portrait_images/1606028/7154001257129230114.png`} alt="" />
+                    <a href={`https://hub.vroid.com/characters/1171131286256569911/models/2386843957743529183`} className="image fit thumb">
+                        <img src={`https://vroid-hub.pximg.net/c/300x400_a2_g5/images/portrait_images/1606028/7118066965436116654.png`} alt="" />
                     </a>
                     <a href={`https://hub.vroid.com/users/6571484`} className="slide-title">
                         <h3>VRoid Models</h3>
