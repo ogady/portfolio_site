@@ -23,6 +23,10 @@ const Career: React.FC<CareerProps> = ({ }) => {
                   <li>SLI/SLOの再構築・再定義</li>
                   <li>S3セキュリティ強化</li>
                   <li>Terraformパイプラインの改善</li>
+                  <li>ECS → EKS移行</li>
+                  <li>MySQL v8アップグレード</li>
+                  <li>Progressive delivery導入</li>
+                  <li>Pull Requestテスト環境自動生成機構構築</li>
                 </ul>
               </li>
             </ul>
