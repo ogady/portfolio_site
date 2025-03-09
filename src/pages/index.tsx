@@ -8,7 +8,7 @@ import GitHubRepos, { Repo } from '../components/abouts/GitHubRepos'
 import Head from '../components/Head'
 import Career from '../components/abouts/Career'
 import Certification from '../components/abouts/Certification'
-import SkillCharts from '../components/abouts/SkillChart'
+import Skills from '../components/abouts/Skills'
 import TechBlog from '../components/abouts/TechBlog'
 import Slides, { Item as SlideItem } from '../components/abouts/Slides'
 import Works from '../components/abouts/Works'
@@ -67,7 +67,7 @@ type HomeIndexProps = {
 const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
   const qiitaPosts = data.allQiitaPost.edges
   const repos = data.allGithubData.edges[0].node.data.allGithubData.edges
-  const { user, skills } = data.site.siteMetadata
+  const { user } = data.site.siteMetadata
   const slides = data.allSlides.edges[0].node.items.filter(function (item, index) {
     return (index <= 4);
   });
@@ -78,10 +78,7 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ data }) => {
       <Header user={user} />
       <div id="main">
         <h1>About</h1>
-        <SkillCharts
-          backgroundColor="rgba( 58,126,242 , 0.30 )"
-          skills={skills}
-        />
+        <Skills />
         <Career />
         {repos && repos.length > 0 && (
           <GitHubRepos repos={repos} user={user.github} />
