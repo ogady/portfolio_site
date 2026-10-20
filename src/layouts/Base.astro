@@ -22,13 +22,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#050d24" />
+    <meta name="theme-color" content="#0c1d55" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={`${base}/avatar.jpg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content={title} />
@@ -42,12 +42,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
   <body>
     <nav class="nav">
       <div class="wrap">
-        <a class="logo" href={base + '/'}>ogady<span>.</span></a>
+        <a class="logo" href={base + '/'}>ogady</a>
         <ul>
-          <li><a href={`${base}/#skills`}>Skills</a></li>
           <li><a href={`${base}/#career`}>Career</a></li>
-          <li class="hide-sm"><a href={`${base}/#talks`}>Talks</a></li>
+          <li><a href={`${base}/#skills`}>Skills</a></li>
           <li class="hide-sm"><a href={`${base}/#writing`}>Writing</a></li>
+          <li class="hide-sm"><a href={`${base}/#talks`}>Talks</a></li>
           <li><a href={`${base}/blog/`}>Blog</a></li>
         </ul>
       </div>
@@ -55,7 +55,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href
     <slot />
     <footer>
       <div class="wrap">
-        <span>© {new Date().getFullYear()} {user.name}</span>
+        <div class="row">
+          <ul class="social">
+            <li><a href={`https://github.com/${user.github}`}>GitHub</a></li>
+            <li><a href={`https://x.com/${user.twitter}`}>X</a></li>
+            <li><a href={`https://www.linkedin.com/in/${user.linkedin}`}>LinkedIn</a></li>
+            <li><a href={`https://speakerdeck.com/${user.speakerDeck}`}>Speaker Deck</a></li>
+          </ul>
+          <span>© {new Date().getFullYear()} {user.name}</span>
+        </div>
       </div>
     </footer>
   </body>

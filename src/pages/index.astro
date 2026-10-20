@@ -9,131 +9,122 @@ const [repos, qiita, slides, medium] = await Promise.all([getRepos(), getQiita()
 const blogPosts = [...medium, ...techBlog.filter((t) => !medium.some((m) => m.title === t.title))].sort((a, b) =>
   b.date.localeCompare(a.date),
 )
-const years = new Date().getFullYear() - 2017
+const siteName = (url: string) => {
+  const host = new URL(url).hostname
+  if (host.endsWith('medium.com')) return 'Medium'
+  if (host.startsWith('techdo.')) return 'MediaDo Tech'
+  return host
+}
+
+// キャリアを分散トレースのスパンとして描くため、期間を年の小数に変換する
+const now = new Date()
+const END = now.getFullYear() + now.getMonth() / 12
+const START = 2017
+const span = (period: string) => {
+  const [s, e] = [...period.matchAll(/(\d{4})\.(\d{2})/g)].map((m) => Number(m[1]) + (Number(m[2]) - 1) / 12)
+  const end = e === undefined ? END : e + 1 / 12
+  const pct = (v: number) => `${(((v - START) / (END - START)) * 100).toFixed(2)}%`
+  const months = Math.round((end - s) * 12)
+  const dur = `${Math.floor(months / 12)}y ${months % 12}m`.replace(/^0y | 0m$/g, '')
+  return { x: pct(s), w: pct(START + end - s), open: e === undefined, dur }
+}
+const COLORS = ['var(--accent)', 'var(--blue-1)', 'var(--blue-2)']
+const ticks = Array.from({ length: now.getFullYear() - START + 1 }, (_, i) => START + i)
+let i = 0
+const trace = [...career].reverse().map((job, n) => ({
+  ...job,
+  c: COLORS[(career.length - 1 - n) % COLORS.length],
+  i: i++,
+  bar: span(job.period),
+  projects: job.projects
+    .map((p) => ({ ...p, bar: span(p.period ?? job.period) }))
+    .sort((a, b) => parseFloat(a.bar.x) - parseFloat(b.bar.x))
+    .map((p) => ({ ...p, i: i++ })),
+}))
 ---
 
 <Base>
-  <header class="hero">
-    <div class="wrap">
+  <header class="hero wrap">
+    <h1 class="hero-name">
+      <img class="sticker" src={`${base}/avatar.jpg`} alt="" width="210" height="210" />
+      <span>Takumi</span><span>Ogawa</span>
+    </h1>
+    <div class="hero-body">
       <div>
-        <span class="eyebrow">Manager, SRE & Data Platform / Data Enabling @ Eureka, Inc.</span>
-        <h1>Takumi<br /><em>Ogawa</em>.</h1>
+        <p class="role">株式会社エウレカで SRE & Data Platform / Data Enabling のマネージャーをしています。</p>
         <p class="lead">
-          信頼性とデリバリーの速さを両立させるSRE。AWS / Kubernetes / Terraform を軸に、プラットフォームとデータ基盤を作って運用しています。
+          AWS / Kubernetes / Terraform を軸に、信頼性とデリバリーの速さを両立させるプラットフォームとデータ基盤を作っています。
         </p>
-        <div class="btns">
-          <a class="btn primary" href="#career">Career を見る</a>
-          <a class="btn" href={`${base}/blog/`}>Blog</a>
-        </div>
-        <ul class="social">
-          <li><a href={`https://github.com/${user.github}`}>GitHub</a></li>
-          <li><a href={`https://x.com/${user.twitter}`}>X</a></li>
-          <li><a href={`https://www.linkedin.com/in/${user.linkedin}`}>LinkedIn</a></li>
-          <li><a href={`https://www.facebook.com/${user.facebook}`}>Facebook</a></li>
-        </ul>
-        <div class="stats">
-          <div><b>{years}+</b><span>years in engineering</span></div>
-          <div><b>3</b><span>companies</span></div>
-        </div>
       </div>
-      <img class="avatar" src={`${base}/avatar.jpg`} alt="Takumi Ogawa" width="240" height="240" />
+      <ul class="social">
+        <li><a href={`https://github.com/${user.github}`}>GitHub</a></li>
+        <li><a href={`https://x.com/${user.twitter}`}>X</a></li>
+        <li><a href={`https://www.linkedin.com/in/${user.linkedin}`}>LinkedIn</a></li>
+        <li><a href={`https://www.facebook.com/${user.facebook}`}>Facebook</a></li>
+      </ul>
     </div>
   </header>
 
   <main>
-    <section class="block" id="skills">
-      <div class="wrap">
-        <div class="sec-head"><span class="no">01</span><h2>Skills</h2></div>
-        <div class="grid">
-          {skills.map((s) => (
-            <div class="card skill hover">
-              <h3>{s.title}</h3>
-              <ul class="chips">{s.items.map((i) => <li>{i}</li>)}</ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section class="block" id="career">
       <div class="wrap">
-        <div class="sec-head"><span class="no">02</span><h2>Career</h2></div>
-        <div class="timeline">
-          {career.map((job) => (
-            <article class="job card">
-              <div class="job-head">
-                <div>
-                  <h3><a href={job.url}>{job.company}</a></h3>
-                  <span class="role">{job.role}</span>
-                </div>
-                <time>{job.period}</time>
+        <div class="sec-head"><h2>Career</h2></div>
+        <div class="trace" style={`--years:${END - START}`}>
+          <div class="axis" aria-hidden="true">
+            <span class="label"></span>
+            <div class="ticks">
+              {ticks.map((y) => (
+                <span class:list={{ now: y === now.getFullYear() }} style={`left:${(((y - START) / (END - START)) * 100).toFixed(2)}%`}>{y}</span>
+              ))}
+            </div>
+          </div>
+          {trace.map((job) => (
+            <details class="root" style={`--c:${job.c}`} open={job.bar.open}>
+              <summary class="span-row">
+                <span class="name">{job.company}<span class="when">{job.period}</span></span>
+                <span class="track"><span class:list={['bar', { 'open-end': job.bar.open }]} style={`--x:${job.bar.x};--w:${job.bar.w};--i:${job.i}`}><span class="dur">{job.bar.dur}</span></span></span>
+              </summary>
+              <div class="detail">
+                <p class="meta">{job.role} / {job.period} / <a href={job.url}>{new URL(job.url).hostname.replace(/^www\./, '')}</a></p>
               </div>
               {job.projects.map((p) => (
-                <div class="proj">
-                  <h4>{p.title}{p.period && <small>{p.period}</small>}</h4>
-                  <ul class="hl">{p.highlights.map((h) => <li>{h}</li>)}</ul>
-                  {p.stack && <ul class="chips sm">{p.stack.map((s) => <li>{s}</li>)}</ul>}
-                </div>
+                <details>
+                  <summary class="span-row">
+                    <span class="name">{p.title}{p.period && <span class="when">{p.period}</span>}</span>
+                    <span class="track"><span class:list={['bar', { 'open-end': p.bar.open }]} style={`--x:${p.bar.x};--w:${p.bar.w};--i:${p.i}`}></span></span>
+                  </summary>
+                  <div class="detail">
+                    {p.period && <p class="meta">{p.period}</p>}
+                    <ul class="hl">{p.highlights.map((h) => <li>{h}</li>)}</ul>
+                    {p.stack && <p class="stack">{p.stack.join(', ')}</p>}
+                  </div>
+                </details>
               ))}
-            </article>
+            </details>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="block" id="certifications">
+    <section class="block" id="skills">
       <div class="wrap">
-        <div class="sec-head"><span class="no">03</span><h2>Certifications</h2></div>
-        <div class="grid">
-          {certifications.map((c) => (
-            <div class="card cert hover"><time>{c.date}</time><span>{c.name}</span></div>
+        <div class="sec-head"><h2>Skills</h2></div>
+        <dl class="skills">
+          {skills.map((s) => (
+            <div><dt>{s.title}</dt><dd>{s.items.join(', ')}</dd></div>
           ))}
-        </div>
-      </div>
-    </section>
-
-    {repos.length > 0 && (
-      <section class="block" id="projects">
-        <div class="wrap">
-          <div class="sec-head"><span class="no">04</span><h2>Projects</h2></div>
-          <div class="grid">
-            {repos.map((r) => (
-              <a class="card repo" href={r.url}>
-                <h3>{r.name}</h3>
-                <p>{r.description ?? ''}</p>
-                <div class="meta">
-                  {r.language && <span>● {r.language}</span>}
-                  <span>★ {r.stars}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-          <p class="more"><a class="btn" href={`https://github.com/${user.github}`}>More on GitHub →</a></p>
-        </div>
-      </section>
-    )}
-
-    <section class="block" id="talks">
-      <div class="wrap">
-        <div class="sec-head"><span class="no">05</span><h2>Talks</h2></div>
-        {slides.length > 0 ? (
-          <ul class="list">
-            {slides.map((s) => (
-              <li><a href={s.url}><time>{s.date}</time><span class="t">{s.title}</span><span class="arrow">↗</span></a></li>
-            ))}
-          </ul>
-        ) : <p class="empty">スライドは Speaker Deck を見てください。</p>}
-        <p class="more"><a class="btn" href={`https://speakerdeck.com/${user.speakerDeck}`}>More on Speaker Deck →</a></p>
+          <div><dt>Certifications</dt><dd>{certifications.map((c) => `${c.name} (${c.date.slice(0, 4)})`).join(', ')}</dd></div>
+        </dl>
       </div>
     </section>
 
     <section class="block" id="writing">
       <div class="wrap">
-        <div class="sec-head"><span class="no">06</span><h2>Writing</h2></div>
-        <h3 class="sub" style="margin-top:0">Tech Blog</h3>
+        <div class="sec-head"><h2>Writing</h2></div>
+        <h3 class="sub">Tech Blog</h3>
         <ul class="list">
           {blogPosts.map((p) => (
-            <li><a href={p.url}><time>{p.date}</time><span class="t">{p.title}</span><span class="arrow">↗</span></a></li>
+            <li><a href={p.url}><time>{p.date}</time><span class="t">{p.title}</span><span class="src">{siteName(p.url)}</span></a></li>
           ))}
         </ul>
         {qiita.length > 0 && (
@@ -141,23 +132,54 @@ const years = new Date().getFullYear() - 2017
             <h3 class="sub">Qiita</h3>
             <ul class="list">
               {qiita.map((p) => (
-                <li><a href={p.url}><time>{p.date}</time><span class="t">{p.title}</span><span class="arrow">↗</span></a></li>
+                <li><a href={p.url}><time>{p.date}</time><span class="t">{p.title}</span><span class="src">Qiita</span></a></li>
               ))}
             </ul>
-            <p class="more"><a class="btn" href={`https://qiita.com/${user.qiita}`}>More on Qiita →</a></p>
+            <p class="more"><a class="btn" href={`https://qiita.com/${user.qiita}`}>Qiita の記事一覧</a></p>
           </>
+        )}
+      </div>
+    </section>
+
+    <section class="block" id="talks">
+      <div class="wrap columns">
+        <div>
+          <div class="sec-head"><h2>Talks</h2></div>
+          {slides.length > 0 ? (
+            <ul class="list">
+              {slides.map((s) => (
+                <li><a href={s.url}><time>{s.date}</time><span class="t">{s.title}</span><span></span></a></li>
+              ))}
+            </ul>
+          ) : <p class="empty">スライドは Speaker Deck にまとめています。</p>}
+          <p class="more"><a class="btn" href={`https://speakerdeck.com/${user.speakerDeck}`}>Speaker Deck を見る</a></p>
+        </div>
+        {repos.length > 0 && (
+          <div id="projects">
+            <div class="sec-head"><h2>Code</h2></div>
+            <ul class="list">
+              {repos.map((r) => (
+                <li><a href={r.url}><time>{r.language ?? ''}</time><span class="t">{r.name}<br /><span class="src">{r.description ?? ''}</span></span><span class="src">★ {r.stars}</span></a></li>
+              ))}
+            </ul>
+            <p class="more"><a class="btn" href={`https://github.com/${user.github}`}>GitHub を見る</a></p>
+          </div>
         )}
       </div>
     </section>
 
     <section class="block" id="works">
       <div class="wrap">
-        <div class="sec-head"><span class="no">07</span><h2>Works</h2></div>
-        <div class="grid">
-          {works.map((w) => (
-            <a class="card work" href={w.url}>
+        <div class="sec-head">
+          <h2>Works</h2>
+          <p>仕事の外で作っているもの。</p>
+        </div>
+        <div class="works">
+          {works.map((w, n) => (
+            <a class="work" href={w.url} style={`--c:${COLORS[(n + 1) % COLORS.length]}`}>
               <img src={w.image.startsWith('http') ? w.image : `${base}/${w.image}`} alt="" loading="lazy" />
               <h3>{w.title}</h3>
+              <p>{new URL(w.url).hostname.replace(/^www\./, '')}</p>
             </a>
           ))}
         </div>
