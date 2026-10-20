@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro'
+import { getPosts, fmtDate } from '../../lib/posts'
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+const posts = await getPosts()
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort()
+---
+
+<Base title="Blog — Takumi Ogawa">
+  <main class="wrap page">
+    <h1>Blog</h1>
+    <p class="desc">技術メモと振り返り。</p>
+    <div class="tags">
+      {tags.map((t) => <a class="tag" href={`${base}/blog/tags/${encodeURIComponent(t)}/`}>#{t}</a>)}
+    </div>
+    <ul class="list">
+      {posts.map((p) => (
+        <li><a href={`${base}/blog/${p.id}/`}><time>{fmtDate(p.data.date)}</time><span class="t">{p.data.title}</span><span class="arrow">→</span></a></li>
+      ))}
+    </ul>
+  </main>
+</Base>

@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro'
+const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+---
+
+<Base title="404 — Not Found">
+  <main class="wrap page">
+    <h1>404</h1>
+    <p class="desc">ページが見つかりませんでした。</p>
+    <a class="btn primary" href={`${base}/`}>Top に戻る</a>
+  </main>
+</Base>
