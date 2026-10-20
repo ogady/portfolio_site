@@ -1,94 +1,32 @@
 # portfolio_site
 
-## :arrow_forward: Usage
+ogady's portfolio site. [Astro](https://astro.build) で構築した静的サイト。
 
-### Create a new site
-```
-$ npm install -g gatsby-cli
-$ gatsby new portfolio-gatsby https://github.com/ogady/portfolio_site
-```
+## Development
 
-### Develop the site locally
 ```bash
-$ npm install
-$ npm run develop
+npm install
+npm run dev      # http://localhost:4321/portfolio_site/
+npm run build    # dist/ に出力
 ```
 
-Open at `http://localhost:8000` in the browser.
+## 構成
 
-## :rocket: Deploy
+- `src/data/profile.ts` — プロフィール・経歴・スキル・資格・TechBlogなどのコンテンツ
+- `src/lib/fetchers.ts` — GitHub / Qiita / Speaker Deck をビルド時に取得（失敗時は該当セクションを省略）
+- `contents/*.md` — ブログ記事（frontmatter: `title`, `date`, `tags`）
+- `src/styles/global.css` — デザイントークン（深い青 + 黄色のアクセント）
 
-### Deploy to GitHub Pages using GitHub Actions
+## Deploy
 
-Add the `pathPrefix` to `gatsby-config.js`.
+master への push で GitHub Actions が `gh-pages` ブランチへデプロイする。
 
-```js
-module.exports = {
-  pathPrefix: `/repo-name`,
-}
-```
+Secrets（いずれもレート制限回避用。未設定でもビルド可）:
 
-Update the build script to `package.json`.
+- `READ_GITHUB_API_TOKEN` — GitHub API
+- `QIITA_API_TOKEN` — Qiita API
+- `GH_TOKEN` — gh-pages へのデプロイ（scope: `repo`）
 
-```diff
--"build": "gatsby build",
-+"build": "gatsby build --prefix-paths",
-```
+## Licence
 
-Add secrets to repository settings.
-
-- **GITHUB_API_TOKEN**
-  - Use for fetch repository data from GitHub.
-  - Scope: `public_repo`
-- **QIITA_API_TOKEN**
-  - Use for fetch article data from Qiita.
-  - Scope: `read_qiita`
-- **RSS2JSON_API_TOKEN**
-  - Use for fetch slide data from Speaker Deck.
-- **GH_TOKEN**
-  - Use for deploy to GitHub Pages
-  - Scope: `repo`
-
-Create the workflow file like `deploy.yml` and add it to `.github/workflows`. 
-
-```yml
-name: Deploy
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: setup node 10.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-
-      - name: install
-        run: npm install
-
-      - name: build
-        run: npm run build
-        env:
-          READ_GITHUB_API_TOKEN: ${{ secrets.READ_GITHUB_API_TOKEN }}
-          QIITA_API_TOKEN: ${{ secrets.QIITA_API_TOKEN }}
-          RSS2JSON_API_TOKEN: ${{ secrets.RSS2JSON_API_TOKEN }}
-
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v2.3.2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./public
-```
-
-Push your changes to the master branch and start the build for deploy to GitHub Pages.
-
-## :memo: Licence
 MIT

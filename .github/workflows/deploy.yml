@@ -5,45 +5,26 @@ on:
   push:
     branches: [master]
 
-    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-      - name: setup node 10.x
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: '10.x'
+          node-version: '22'
+          cache: npm
 
-      - name: install
-        run: npm install
+      - run: npm ci
 
-      - name: build
-        run: npm run build
+      - run: npm run build
         env:
           READ_GITHUB_API_TOKEN: ${{ secrets.READ_GITHUB_API_TOKEN }}
           QIITA_API_TOKEN: ${{ secrets.QIITA_API_TOKEN }}
-          RSS2JSON_API_TOKEN: ${{ secrets.RSS2JSON_API_TOKEN }}
 
-      - name: deploy
-        uses: peaceiris/actions-gh-pages@v2.3.2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./public
-
-  audit:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Audit live URL
-        uses: jakejarvis/lighthouse-action@master
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          url: 'https://ogady.github.io/portfolio_site/'
-      - name: Upload results as an artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: report
-          path: './report'
+          personal_token: ${{ secrets.GH_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./dist
