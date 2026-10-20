@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AtCoder Beginers Selectionをgoで解いてみる(後編) — Takumi Ogawa</title><meta name="description" content="ogady's portfolio site — SRE / Platform engineer"><meta name="theme-color" content="#050d24"><link rel="canonical" href="https://ogady.github.io/portfolio_site/blog/atcoderbeginnersselection3/"><link rel="icon" href="/portfolio_site/avatar.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"><meta property="og:title" content="AtCoder Beginers Selectionをgoで解いてみる(後編) — Takumi Ogawa"><meta property="og:description" content="ogady's portfolio site — SRE / Platform engineer"><meta property="og:type" content="website"><meta property="og:url" content="https://ogady.github.io/portfolio_site/blog/atcoderbeginnersselection3/"><meta property="og:image" content="https://ogady.github.io/portfolio_site/avatar.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@_ogady_"><link rel="stylesheet" href="/portfolio_site/_astro/_slug_.BlSlpe-M.css"></head> <body> <nav class="nav"> <div class="wrap"> <a class="logo" href="/portfolio_site/">ogady<span>.</span></a> <ul> <li><a href="/portfolio_site/#skills">Skills</a></li> <li><a href="/portfolio_site/#career">Career</a></li> <li class="hide-sm"><a href="/portfolio_site/#talks">Talks</a></li> <li class="hide-sm"><a href="/portfolio_site/#writing">Writing</a></li> <li><a href="/portfolio_site/blog/">Blog</a></li> </ul> </div> </nav>  <main class="wrap page"> <a class="back" href="/portfolio_site/blog/">← Blog</a> <article> <time class="post-meta">2020-05-17</time> <h1>AtCoder Beginers Selectionをgoで解いてみる(後編)</h1> <div class="tags"> <a class="tag" href="/portfolio_site/blog/tags/AtCoder/">#AtCoder</a><a class="tag" href="/portfolio_site/blog/tags/Go/">#Go</a> </div> <div class="prose"><h3 id="8-otoshidama">8. <a href="hhttps://atcoder.jp/contests/abs/tasks/abc085_c">Otoshidama</a></h3>
+<p>【概要】</p>
+<p>10000 円札、5000 円札、1000 円札を合計 N 枚使用して、Y 円になる組み合わせを 1 つ出力する。</p>
+<p>N 枚のお札の合計金額が Y 円となることがありえない場合は、<code>-1 -1 -1</code> と出力する。</p>
+<p>for 文をネストして全探索するが、素直に 3 重ループで回すと、TLE（Time Limit Exceeded）となってしまいそう。</p>
+<p>2 重ループで 2 種類のお札の枚数を確定させ、3 種類目のお札の枚数（<code>N - 1種類目の枚数 - 2種類目の枚数」</code>）で 残りの金額が実現できるかを調査すれば、for 文のネストをいつ解消することができる。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#96D0FF"> "</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">	var</span><span style="color:#ADBAC7"> cnt, tar </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#ADBAC7">	fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#F47067"> %d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">cnt, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">tar)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	for</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; i </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> cnt; i</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">		for</span><span style="color:#ADBAC7"> j </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; j </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> cnt; j</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">			sum </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 10000</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">i </span><span style="color:#F47067">+</span><span style="color:#6CB6FF"> 5000</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">j </span><span style="color:#F47067">+</span><span style="color:#6CB6FF"> 1000</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">(cnt</span><span style="color:#F47067">-</span><span style="color:#ADBAC7">i</span><span style="color:#F47067">-</span><span style="color:#ADBAC7">j)</span></span>
+<span class="line"><span style="color:#F47067">			if</span><span style="color:#ADBAC7"> (cnt </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> j) </span><span style="color:#F47067">>=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">				if</span><span style="color:#ADBAC7"> sum </span><span style="color:#F47067">==</span><span style="color:#ADBAC7"> tar {</span></span>
+<span class="line"><span style="color:#ADBAC7">					fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(i, j, (cnt </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> j))</span></span>
+<span class="line"><span style="color:#ADBAC7">				}</span></span>
+<span class="line"><span style="color:#ADBAC7">			}</span></span>
+<span class="line"><span style="color:#ADBAC7">		}</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"><span style="color:#ADBAC7">	fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(</span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h3 id="9-白昼夢">9. <a href="https://atcoder.jp/contests/abs/tasks/arc065_a">白昼夢</a></h3>
+<p>【概要】</p>
+<p>文字列 S が<code>dream</code>、<code>dreamer</code>、<code>erase</code>、<code>eraser</code>の組み合わせでできているかを判例する。</p>
+<p>S を後ろから判定していくと簡単に求められる。</p>
+<p>Greedy アルゴリズム（貪欲法）と言うらしい。</p>
+<blockquote>
+<p>貪欲法とは。。。</p>
+<ol>
+<li>問題を複数の部分問題に分割する</li>
+<li>各部分問題に対する解を評価する(各部分問題ごとに考えられる解のパターンは複数ある．)</li>
+<li>評価が最も良いものをその部分問題の解(=局所最適解)として，次の部分問題の解(これも複数通り考えられる)を評価する</li>
+</ol>
+</blockquote>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#96D0FF">	"</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">	"</span><span style="color:#F69D50">strings</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">	keyWords </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> []</span><span style="color:#F47067">string</span><span style="color:#ADBAC7">{</span><span style="color:#96D0FF">"dream"</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">"dreamer"</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">"erase"</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">"eraser"</span><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	var</span><span style="color:#ADBAC7"> s </span><span style="color:#F47067">string</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">	fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%s</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">s)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	for</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">		var</span><span style="color:#ADBAC7"> status </span><span style="color:#F47067">bool</span></span>
+<span class="line"><span style="color:#F47067">		if</span><span style="color:#ADBAC7"> s </span><span style="color:#F47067">!=</span><span style="color:#96D0FF"> ""</span><span style="color:#ADBAC7"> {　</span></span>
+<span class="line"><span style="color:#F47067">			for</span><span style="color:#ADBAC7"> _, v </span><span style="color:#F47067">:=</span><span style="color:#F47067"> range</span><span style="color:#ADBAC7"> keyWords {</span></span>
+<span class="line"><span style="color:#F47067">				if</span><span style="color:#ADBAC7"> strings.</span><span style="color:#DCBDFB">HasSuffix</span><span style="color:#ADBAC7">(s, v) {</span></span>
+<span class="line"><span style="color:#ADBAC7">					s </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> strings.</span><span style="color:#DCBDFB">TrimSuffix</span><span style="color:#ADBAC7">(s, v)</span></span>
+<span class="line"><span style="color:#ADBAC7">					status </span><span style="color:#F47067">=</span><span style="color:#6CB6FF"> true</span></span>
+<span class="line"><span style="color:#ADBAC7">				}</span></span>
+<span class="line"><span style="color:#ADBAC7">			}</span></span>
+<span class="line"><span style="color:#F47067">			if</span><span style="color:#F47067"> !</span><span style="color:#ADBAC7">status {</span></span>
+<span class="line"><span style="color:#F47067">				break</span></span>
+<span class="line"><span style="color:#ADBAC7">			}</span></span>
+<span class="line"><span style="color:#ADBAC7">		} </span><span style="color:#F47067">else</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">			break</span></span>
+<span class="line"><span style="color:#ADBAC7">		}</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"><span style="color:#F47067">	if</span><span style="color:#ADBAC7"> s </span><span style="color:#F47067">!=</span><span style="color:#96D0FF"> ""</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">		fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"NO"</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">	} </span><span style="color:#F47067">else</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">		fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"YES"</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h3 id="10-traveling">10. <a href="https://atcoder.jp/contests/abs/tasks/arc089_a">Traveling</a></h3>
+<p>【概要】</p>
+<p>二次元平面上を時刻 0 に点 (0,0)からスタートし、時刻 ti ごとにに 点 (xi,yi) に移動しながら動く。これが実現可能かを判定する。</p>
+<p>時刻 t+1 には、(x+1,y) , (x−1,y), (x,y+1), (x,y−1)に移動し、留まることはできない。</p>
+<p>これは最初全然解き方がわからなかった。</p>
+<p><a href="https://www.weblio.jp/content/%E3%83%91%E3%83%AA%E3%83%86%E3%82%A3">パリティ</a>（今回の定義では偶奇性）の考え方を使用するらしい。</p>
+<p>毎ステップごとに<code>xi+yi</code>の偶奇が入れ替わる特性を利用して解いていく。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#96D0FF">	"</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">	"</span><span style="color:#F69D50">math</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">type</span><span style="color:#F69D50"> plan</span><span style="color:#F47067"> struct</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">	t </span><span style="color:#F47067">float64</span></span>
+<span class="line"><span style="color:#ADBAC7">	x </span><span style="color:#F47067">float64</span></span>
+<span class="line"><span style="color:#ADBAC7">	y </span><span style="color:#F47067">float64</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">	var</span><span style="color:#ADBAC7"> n </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#ADBAC7">	fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">n)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">	plans </span><span style="color:#F47067">:=</span><span style="color:#DCBDFB"> make</span><span style="color:#ADBAC7">([]</span><span style="color:#F69D50">plan</span><span style="color:#ADBAC7">, n</span><span style="color:#F47067">+</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">	plans[</span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">] </span><span style="color:#F47067">=</span><span style="color:#F69D50"> plan</span><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#ADBAC7">		t: </span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">		x: </span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">		y: </span><span style="color:#6CB6FF">0</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	var</span><span style="color:#ADBAC7"> t, x, y </span><span style="color:#F47067">float64</span></span>
+<span class="line"><span style="color:#F47067">	for</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 1</span><span style="color:#ADBAC7">; i </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> n; i</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">		fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%f</span><span style="color:#F47067"> %f</span><span style="color:#F47067"> %f</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">t, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">x, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">y)</span></span>
+<span class="line"><span style="color:#ADBAC7">		plans[i] </span><span style="color:#F47067">=</span><span style="color:#F69D50"> plan</span><span style="color:#ADBAC7">{</span></span>
+<span class="line"><span style="color:#ADBAC7">			t: t,</span></span>
+<span class="line"><span style="color:#ADBAC7">			x: x,</span></span>
+<span class="line"><span style="color:#ADBAC7">			y: y,</span></span>
+<span class="line"><span style="color:#ADBAC7">		}</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	var</span><span style="color:#ADBAC7"> canMove </span><span style="color:#F47067">bool</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	for</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 1</span><span style="color:#ADBAC7">; i </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> n; i</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">		dist </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> math.</span><span style="color:#DCBDFB">Abs</span><span style="color:#ADBAC7">(plans[i].x</span><span style="color:#F47067">-</span><span style="color:#ADBAC7">plans[i</span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">].x) </span><span style="color:#F47067">+</span><span style="color:#ADBAC7"> math.</span><span style="color:#DCBDFB">Abs</span><span style="color:#ADBAC7">(plans[i].y</span><span style="color:#F47067">-</span><span style="color:#ADBAC7">plans[i</span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">].y)</span></span>
+<span class="line"><span style="color:#ADBAC7">		dt </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> math.</span><span style="color:#DCBDFB">Abs</span><span style="color:#ADBAC7">(plans[i].t </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> plans[i</span><span style="color:#F47067">-</span><span style="color:#6CB6FF">1</span><span style="color:#ADBAC7">].t)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">		if</span><span style="color:#ADBAC7"> dist </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> dt </span><span style="color:#F47067">&#x26;&#x26;</span><span style="color:#DCBDFB"> judgeEven</span><span style="color:#ADBAC7">(dist) </span><span style="color:#F47067">==</span><span style="color:#DCBDFB"> judgeEven</span><span style="color:#ADBAC7">(dt) {</span></span>
+<span class="line"><span style="color:#ADBAC7">			canMove </span><span style="color:#F47067">=</span><span style="color:#6CB6FF"> true</span></span>
+<span class="line"><span style="color:#ADBAC7">		} </span><span style="color:#F47067">else</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">			canMove </span><span style="color:#F47067">=</span><span style="color:#6CB6FF"> false</span></span>
+<span class="line"><span style="color:#F47067">			break</span></span>
+<span class="line"><span style="color:#ADBAC7">		}</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">	if</span><span style="color:#ADBAC7"> canMove {</span></span>
+<span class="line"><span style="color:#ADBAC7">		fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"Yes"</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">	} </span><span style="color:#F47067">else</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">		fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"No"</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> judgeEven</span><span style="color:#ADBAC7">(</span><span style="color:#F69D50">tar</span><span style="color:#F47067"> float64</span><span style="color:#ADBAC7">) </span><span style="color:#F47067">bool</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">	if</span><span style="color:#F47067"> int</span><span style="color:#ADBAC7">(tar)</span><span style="color:#F47067">%</span><span style="color:#6CB6FF">2</span><span style="color:#F47067"> ==</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">		return</span><span style="color:#6CB6FF"> true</span></span>
+<span class="line"><span style="color:#ADBAC7">	}</span></span>
+<span class="line"><span style="color:#F47067">	return</span><span style="color:#6CB6FF"> false</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span></code></pre></div> </article> </main>  <footer> <div class="wrap"> <span>© 2026 Takumi Ogawa</span> </div> </footer> </body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AtCoder Beginers Selectionをgoで解いてみる(中編) — Takumi Ogawa</title><meta name="description" content="ogady's portfolio site — SRE / Platform engineer"><meta name="theme-color" content="#050d24"><link rel="canonical" href="https://ogady.github.io/portfolio_site/blog/atcoderbeginnersselection2/"><link rel="icon" href="/portfolio_site/avatar.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"><meta property="og:title" content="AtCoder Beginers Selectionをgoで解いてみる(中編) — Takumi Ogawa"><meta property="og:description" content="ogady's portfolio site — SRE / Platform engineer"><meta property="og:type" content="website"><meta property="og:url" content="https://ogady.github.io/portfolio_site/blog/atcoderbeginnersselection2/"><meta property="og:image" content="https://ogady.github.io/portfolio_site/avatar.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@_ogady_"><link rel="stylesheet" href="/portfolio_site/_astro/_slug_.BlSlpe-M.css"></head> <body> <nav class="nav"> <div class="wrap"> <a class="logo" href="/portfolio_site/">ogady<span>.</span></a> <ul> <li><a href="/portfolio_site/#skills">Skills</a></li> <li><a href="/portfolio_site/#career">Career</a></li> <li class="hide-sm"><a href="/portfolio_site/#talks">Talks</a></li> <li class="hide-sm"><a href="/portfolio_site/#writing">Writing</a></li> <li><a href="/portfolio_site/blog/">Blog</a></li> </ul> </div> </nav>  <main class="wrap page"> <a class="back" href="/portfolio_site/blog/">← Blog</a> <article> <time class="post-meta">2020-03-17</time> <h1>AtCoder Beginers Selectionをgoで解いてみる(中編)</h1> <div class="tags"> <a class="tag" href="/portfolio_site/blog/tags/AtCoder/">#AtCoder</a><a class="tag" href="/portfolio_site/blog/tags/Go/">#Go</a> </div> <div class="prose"><h3 id="4-coins">4. <a href="https://atcoder.jp/contests/abs/tasks/abc087_b">Coins</a></h3>
+<p>【概要】</p>
+<p>500 円玉を A 枚、100 円玉を B 枚、50 円玉を C 枚持っている。これらの硬貨の中から何枚かを選び、合計金額をちょうど XX 円にする方法は何通りあるか求める。</p>
+<p>for 文をネストして全探索する。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#96D0FF"> "</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> a, b, c, x, cnt </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">a)</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">b)</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">c)</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">x)</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> A </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; A </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> a; A</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">        for</span><span style="color:#ADBAC7"> B </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; B </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> b; B</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">            for</span><span style="color:#ADBAC7"> C </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; C </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> c; C</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">                i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 500</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">A </span><span style="color:#F47067">+</span><span style="color:#6CB6FF"> 100</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">B </span><span style="color:#F47067">+</span><span style="color:#6CB6FF"> 50</span><span style="color:#F47067">*</span><span style="color:#ADBAC7">C</span></span>
+<span class="line"><span style="color:#F47067">                if</span><span style="color:#ADBAC7"> x </span><span style="color:#F47067">==</span><span style="color:#ADBAC7"> i {</span></span>
+<span class="line"><span style="color:#ADBAC7">                    cnt</span><span style="color:#F47067">++</span></span>
+<span class="line"><span style="color:#ADBAC7">                }</span></span>
+<span class="line"><span style="color:#ADBAC7">            }</span></span>
+<span class="line"><span style="color:#ADBAC7">        }</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(cnt)</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h3 id="5-some-sums">5. <a href="https://atcoder.jp/contests/abs/tasks/abc083_b">Some Sums</a></h3>
+<p>【概要】</p>
+<p>1 以上 N 以下の整数のうち、10 進法で各桁の和が A 以上 B 以下であるものについて、総和を求める。</p>
+<p>全探索で解きました。</p>
+<p>与えられた N 以下の整数を文字列に変換し、桁分だけループしています。</p>
+<p>この解法だと桁が大量に増えたときに厳しいかも。。。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">strconv</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> n, a, b, sum </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#F47067"> %d</span><span style="color:#F47067"> %d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">n, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">a, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">b)</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; i </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> n; i</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">        s </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> strconv.</span><span style="color:#DCBDFB">Itoa</span><span style="color:#ADBAC7">(i)</span></span>
+<span class="line"><span style="color:#F47067">        var</span><span style="color:#ADBAC7"> x </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">        for</span><span style="color:#ADBAC7"> _, v </span><span style="color:#F47067">:=</span><span style="color:#F47067"> range</span><span style="color:#ADBAC7"> s {</span></span>
+<span class="line"><span style="color:#ADBAC7">            j, _ </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> strconv.</span><span style="color:#DCBDFB">Atoi</span><span style="color:#ADBAC7">(</span><span style="color:#F47067">string</span><span style="color:#ADBAC7">(v))</span></span>
+<span class="line"><span style="color:#ADBAC7">            x </span><span style="color:#F47067">+=</span><span style="color:#ADBAC7"> j</span></span>
+<span class="line"><span style="color:#ADBAC7">        }</span></span>
+<span class="line"><span style="color:#F47067">        if</span><span style="color:#ADBAC7"> x </span><span style="color:#F47067">>=</span><span style="color:#ADBAC7"> a </span><span style="color:#F47067">&#x26;&#x26;</span><span style="color:#ADBAC7"> x </span><span style="color:#F47067">&#x3C;=</span><span style="color:#ADBAC7"> b {</span></span>
+<span class="line"><span style="color:#ADBAC7">            sum </span><span style="color:#F47067">+=</span><span style="color:#ADBAC7"> i</span></span>
+<span class="line"><span style="color:#ADBAC7">        }</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(sum)</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h3 id="6-card-game-for-two">6. <a href="https://atcoder.jp/contests/abs/tasks/abc088_b">Card Game for Two</a></h3>
+<p>【概要】</p>
+<p>Alice と Bob が数字の大きい順に、交互に一枚ずつカードをとり、取ったカードの合計の差を求めるもの。</p>
+<p>ソートの例題です。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">bufio</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">os</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">sort</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">strconv</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">strings</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> n </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> aa []</span><span style="color:#F47067">string</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> ia []</span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> alice </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> bob </span><span style="color:#F47067">int</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">n)</span></span>
+<span class="line"><span style="color:#ADBAC7">    s </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> bufio.</span><span style="color:#DCBDFB">NewScanner</span><span style="color:#ADBAC7">(os.Stdin)</span></span>
+<span class="line"><span style="color:#ADBAC7">    s.</span><span style="color:#DCBDFB">Scan</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#ADBAC7">    aa </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> strings.</span><span style="color:#DCBDFB">Fields</span><span style="color:#ADBAC7">(s.</span><span style="color:#DCBDFB">Text</span><span style="color:#ADBAC7">())</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> _, v </span><span style="color:#F47067">:=</span><span style="color:#F47067"> range</span><span style="color:#ADBAC7"> aa {</span></span>
+<span class="line"><span style="color:#ADBAC7">        i, _ </span><span style="color:#F47067">:=</span><span style="color:#ADBAC7"> strconv.</span><span style="color:#DCBDFB">Atoi</span><span style="color:#ADBAC7">(v)</span></span>
+<span class="line"><span style="color:#ADBAC7">        ia </span><span style="color:#F47067">=</span><span style="color:#DCBDFB"> append</span><span style="color:#ADBAC7">(ia, i)</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    sort.</span><span style="color:#DCBDFB">Slice</span><span style="color:#ADBAC7">(ia, </span><span style="color:#F47067">func</span><span style="color:#ADBAC7">(</span><span style="color:#F69D50">i</span><span style="color:#ADBAC7">, </span><span style="color:#F69D50">j</span><span style="color:#F47067"> int</span><span style="color:#ADBAC7">) </span><span style="color:#F47067">bool</span><span style="color:#ADBAC7"> { </span><span style="color:#F47067">return</span><span style="color:#ADBAC7"> ia[i] </span><span style="color:#F47067">></span><span style="color:#ADBAC7"> ia[j] })</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> i, v </span><span style="color:#F47067">:=</span><span style="color:#F47067"> range</span><span style="color:#ADBAC7"> ia {</span></span>
+<span class="line"><span style="color:#F47067">        if</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">==</span><span style="color:#6CB6FF"> 0</span><span style="color:#F47067"> ||</span><span style="color:#ADBAC7"> i</span><span style="color:#F47067">%</span><span style="color:#6CB6FF">2</span><span style="color:#F47067"> ==</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">            alice </span><span style="color:#F47067">+=</span><span style="color:#ADBAC7"> v</span></span>
+<span class="line"><span style="color:#ADBAC7">        } </span><span style="color:#F47067">else</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">            bob </span><span style="color:#F47067">+=</span><span style="color:#ADBAC7"> v</span></span>
+<span class="line"><span style="color:#ADBAC7">        }</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(alice </span><span style="color:#F47067">-</span><span style="color:#ADBAC7"> bob)</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h3 id="7-kagami-mochi">7. <a href="https://atcoder.jp/contests/abs/tasks/abc085_b">Kagami Mochi</a></h3>
+<p>【概要】</p>
+<p>N 個の整数が与えられ、その中に何種類の異なる値があるか求めるもの。</p>
+<p>list の配列に異なる値を保持しながら配列を回しています。</p>
+<p>どうやらバケット法というらしい。</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="go"><code><span class="line"><span style="color:#F47067">package</span><span style="color:#F69D50"> main</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">fmt</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#96D0FF">    "</span><span style="color:#F69D50">sort</span><span style="color:#96D0FF">"</span></span>
+<span class="line"><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">func</span><span style="color:#DCBDFB"> main</span><span style="color:#ADBAC7">() {</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> n </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">n)</span></span>
+<span class="line"><span style="color:#ADBAC7">    list </span><span style="color:#F47067">:=</span><span style="color:#DCBDFB"> make</span><span style="color:#ADBAC7">([]</span><span style="color:#F47067">int</span><span style="color:#ADBAC7">, n)</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> i </span><span style="color:#F47067">:=</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7">; i </span><span style="color:#F47067">&#x3C;</span><span style="color:#ADBAC7"> n; i</span><span style="color:#F47067">++</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">        fmt.</span><span style="color:#DCBDFB">Scanf</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">"</span><span style="color:#F47067">%d</span><span style="color:#96D0FF">"</span><span style="color:#ADBAC7">, </span><span style="color:#F47067">&#x26;</span><span style="color:#ADBAC7">list[i])</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    sort.</span><span style="color:#DCBDFB">Sort</span><span style="color:#ADBAC7">(sort.</span><span style="color:#DCBDFB">IntSlice</span><span style="color:#ADBAC7">(list))</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> count </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">    var</span><span style="color:#ADBAC7"> preValue </span><span style="color:#F47067">int</span></span>
+<span class="line"><span style="color:#F47067">    for</span><span style="color:#ADBAC7"> _, v </span><span style="color:#F47067">:=</span><span style="color:#F47067"> range</span><span style="color:#ADBAC7"> list {</span></span>
+<span class="line"><span style="color:#F47067">        if</span><span style="color:#ADBAC7"> preValue </span><span style="color:#F47067">==</span><span style="color:#6CB6FF"> 0</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">            count </span><span style="color:#F47067">++</span></span>
+<span class="line"><span style="color:#ADBAC7">        } </span><span style="color:#F47067">else</span><span style="color:#F47067"> if</span><span style="color:#ADBAC7"> preValue </span><span style="color:#F47067">!=</span><span style="color:#ADBAC7"> v {</span></span>
+<span class="line"><span style="color:#ADBAC7">            count </span><span style="color:#F47067">++</span></span>
+<span class="line"><span style="color:#ADBAC7">        }</span></span>
+<span class="line"><span style="color:#ADBAC7">        preValue </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> v</span></span>
+<span class="line"><span style="color:#ADBAC7">    }</span></span>
+<span class="line"><span style="color:#ADBAC7">    fmt.</span><span style="color:#DCBDFB">Println</span><span style="color:#ADBAC7">(count)</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre></div> </article> </main>  <footer> <div class="wrap"> <span>© 2026 Takumi Ogawa</span> </div> </footer> </body></html>

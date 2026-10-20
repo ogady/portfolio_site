@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gatsby.jsでOGPイメージを表示するときハマったことメモ — Takumi Ogawa</title><meta name="description" content="ogady's portfolio site — SRE / Platform engineer"><meta name="theme-color" content="#050d24"><link rel="canonical" href="https://ogady.github.io/portfolio_site/blog/gatsbyjs%E3%81%A7ogp%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%83%A1%E3%83%A2/"><link rel="icon" href="/portfolio_site/avatar.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"><meta property="og:title" content="Gatsby.jsでOGPイメージを表示するときハマったことメモ — Takumi Ogawa"><meta property="og:description" content="ogady's portfolio site — SRE / Platform engineer"><meta property="og:type" content="website"><meta property="og:url" content="https://ogady.github.io/portfolio_site/blog/gatsbyjs%E3%81%A7ogp%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%83%A1%E3%83%A2/"><meta property="og:image" content="https://ogady.github.io/portfolio_site/avatar.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@_ogady_"><link rel="stylesheet" href="/portfolio_site/_astro/_slug_.BlSlpe-M.css"></head> <body> <nav class="nav"> <div class="wrap"> <a class="logo" href="/portfolio_site/">ogady<span>.</span></a> <ul> <li><a href="/portfolio_site/#skills">Skills</a></li> <li><a href="/portfolio_site/#career">Career</a></li> <li class="hide-sm"><a href="/portfolio_site/#talks">Talks</a></li> <li class="hide-sm"><a href="/portfolio_site/#writing">Writing</a></li> <li><a href="/portfolio_site/blog/">Blog</a></li> </ul> </div> </nav>  <main class="wrap page"> <a class="back" href="/portfolio_site/blog/">← Blog</a> <article> <time class="post-meta">2020-01-11</time> <h1>Gatsby.jsでOGPイメージを表示するときハマったことメモ</h1> <div class="tags"> <a class="tag" href="/portfolio_site/blog/tags/Gatsby/">#Gatsby</a> </div> <div class="prose"><h2 id="やりたかったこと">やりたかったこと</h2>
+<p>Gatsby.jsで作ったサイトにOGP設定をして、リンクシェアしたときにTwitterカードとかを綺麗に表示させたかった。</p>
+<h2 id="前提">前提</h2>
+<ul>
+<li>静的サイトホスティングには、github pages を使用</li>
+<li>個人ドメインは使用ぜず、デフォルトの<code>https://{ユーザー名}.github.io/{リポジトリ名}</code>を使用</li>
+</ul>
+<h2 id="ハマったこと">ハマったこと</h2>
+<p>Twitterカードにサムネイルがうまく表示されない。</p>
+<h2 id="調べてみる">調べてみる</h2>
+<p><code>gatsby-config.js</code> はこう</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#DCBDFB">require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'dotenv'</span><span style="color:#ADBAC7">).</span><span style="color:#DCBDFB">config</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> querystring</span><span style="color:#F47067"> =</span><span style="color:#DCBDFB"> require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'querystring'</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> path</span><span style="color:#F47067"> =</span><span style="color:#DCBDFB"> require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'path'</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> siteMetadata</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">  title: </span><span style="color:#96D0FF">'Takumi Ogawa - @ogady'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  author: </span><span style="color:#96D0FF">'Takumi Ogawa'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  description: </span><span style="color:#96D0FF">"ogady's portfolio site"</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  siteUrl: </span><span style="color:#96D0FF">'https://ogady.github.io/portfolio_site'</span><span style="color:#ADBAC7">,　</span></span>
+<span class="line"><span style="color:#ADBAC7">  siteLanguage: </span><span style="color:#96D0FF">'ja'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  shortName: </span><span style="color:#96D0FF">'ogady'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  ----------中略----------</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6CB6FF">module</span><span style="color:#ADBAC7">.</span><span style="color:#6CB6FF">exports</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">  siteMetadata,</span></span>
+<span class="line"><span style="color:#ADBAC7">  pathPrefix: </span><span style="color:#96D0FF">`/portfolio_site`</span><span style="color:#ADBAC7">, </span><span style="color:#768390">// ←（1）</span></span>
+<span class="line"><span style="color:#ADBAC7">  plugins: [</span></span>
+<span class="line"><span style="color:#ADBAC7">    {</span></span>
+<span class="line"><span style="color:#ADBAC7">      resolve: </span><span style="color:#96D0FF">`gatsby-source-filesystem`</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">      options: {</span></span>
+<span class="line"><span style="color:#ADBAC7">        name: </span><span style="color:#96D0FF">`images`</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">        path: path.</span><span style="color:#DCBDFB">join</span><span style="color:#ADBAC7">(__dirname, </span><span style="color:#96D0FF">`src`</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">`assets`</span><span style="color:#ADBAC7">, </span><span style="color:#96D0FF">`images`</span><span style="color:#ADBAC7">),　</span><span style="color:#768390">// ← サムネイル画像の格納パス</span></span>
+<span class="line"><span style="color:#ADBAC7">      },</span></span>
+<span class="line"><span style="color:#ADBAC7">    },</span></span>
+<span class="line"><span style="color:#ADBAC7">  ],</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<p>（1）では、pathPrefixを指定しています。Github Pagesはドメインのルート（/）以外（<code>https://{ユーザー名}.github.io/{リポジトリ名}</code>）でホストされているので、すべてのリソースのパスにプレフィックス（{リポジトリ名}の部分）を追加する必要があります。</p>
+<p>ヘッダー情報のコンポーネントはこう</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="tsx"><code><span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> React </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'react'</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> Helmet, { HelmetProps } </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'react-helmet'</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> { graphql, useStaticQuery } </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> 'gatsby'</span></span>
+<span class="line"><span style="color:#F47067">import</span><span style="color:#ADBAC7"> { createAbsoluteUri } </span><span style="color:#F47067">from</span><span style="color:#96D0FF"> '../lib/utils'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#DCBDFB"> Head</span><span style="color:#F47067">:</span><span style="color:#F69D50"> React</span><span style="color:#ADBAC7">.</span><span style="color:#F69D50">FC</span><span style="color:#ADBAC7">&#x3C;</span><span style="color:#F69D50">HelmetProps</span><span style="color:#ADBAC7">> </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> () </span><span style="color:#F47067">=></span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#F47067">  const</span><span style="color:#6CB6FF"> data</span><span style="color:#F47067"> =</span><span style="color:#DCBDFB"> useStaticQuery</span><span style="color:#ADBAC7">(</span><span style="color:#DCBDFB">graphql</span><span style="color:#96D0FF">`</span></span>
+<span class="line"><span style="color:#96D0FF">    {</span></span>
+<span class="line"><span style="color:#96D0FF">      site {</span></span>
+<span class="line"><span style="color:#96D0FF">        siteMetadata {</span></span>
+<span class="line"><span style="color:#96D0FF">          title</span></span>
+<span class="line"><span style="color:#96D0FF">          description</span></span>
+<span class="line"><span style="color:#96D0FF">          siteUrl</span></span>
+<span class="line"><span style="color:#96D0FF">          siteLanguage</span></span>
+<span class="line"><span style="color:#96D0FF">          user {</span></span>
+<span class="line"><span style="color:#96D0FF">            twitter</span></span>
+<span class="line"><span style="color:#96D0FF">          }</span></span>
+<span class="line"><span style="color:#96D0FF">        }</span></span>
+<span class="line"><span style="color:#96D0FF">      }</span></span>
+<span class="line"><span style="color:#96D0FF">      avatar: file(relativePath: { eq: "ogady_pro.jpg" }) { 	// ←（2）</span></span>
+<span class="line"><span style="color:#96D0FF">        publicURL</span></span>
+<span class="line"><span style="color:#96D0FF">      }</span></span>
+<span class="line"><span style="color:#96D0FF">    }</span></span>
+<span class="line"><span style="color:#96D0FF">  `</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">  const</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#6CB6FF">    user</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#6CB6FF">    title</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#6CB6FF">    description</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#6CB6FF">    siteUrl</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#6CB6FF">    siteLanguage</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  } </span><span style="color:#F47067">=</span><span style="color:#ADBAC7"> data.site.siteMetadata</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">  return</span><span style="color:#ADBAC7"> (</span></span>
+<span class="line"><span style="color:#ADBAC7">    &#x3C;</span><span style="color:#8DDB8C">Helmet</span><span style="color:#6CB6FF"> title</span><span style="color:#F47067">={</span><span style="color:#ADBAC7">title</span><span style="color:#F47067">}</span><span style="color:#ADBAC7">></span></span>
+<span class="line"><span style="color:#ADBAC7">      &#x3C;</span><span style="color:#8DDB8C">html</span><span style="color:#6CB6FF"> lang</span><span style="color:#F47067">={</span><span style="color:#ADBAC7">siteLanguage</span><span style="color:#F47067">}</span><span style="color:#ADBAC7"> /></span></span>
+<span class="line"><span style="color:#ADBAC7">        ----------中略----------</span></span>
+<span class="line"><span style="color:#ADBAC7">      &#x3C;</span><span style="color:#8DDB8C">meta</span></span>
+<span class="line"><span style="color:#6CB6FF">        property</span><span style="color:#F47067">=</span><span style="color:#96D0FF">"og:image"</span></span>
+<span class="line"><span style="color:#6CB6FF">        content</span><span style="color:#F47067">={</span><span style="color:#DCBDFB">createAbsoluteUri</span><span style="color:#ADBAC7">(siteUrl, data.avatar.publicURL)</span><span style="color:#F47067">}</span><span style="color:#768390"> // ←（3）</span></span>
+<span class="line"><span style="color:#ADBAC7">      /></span></span>
+<span class="line"><span style="color:#ADBAC7">        ----------中略----------</span></span>
+<span class="line"><span style="color:#ADBAC7">      &#x3C;</span><span style="color:#8DDB8C">meta</span></span>
+<span class="line"><span style="color:#6CB6FF">        name</span><span style="color:#F47067">=</span><span style="color:#96D0FF">"twitter:image"</span></span>
+<span class="line"><span style="color:#6CB6FF">        content</span><span style="color:#F47067">={</span><span style="color:#DCBDFB">createAbsoluteUri</span><span style="color:#ADBAC7">(siteUrl, data.avatar.publicURL)</span><span style="color:#F47067">}</span><span style="color:#768390"> // ←（4）</span></span>
+<span class="line"><span style="color:#ADBAC7">      /></span></span>
+<span class="line"><span style="color:#ADBAC7">    &#x3C;/</span><span style="color:#8DDB8C">Helmet</span><span style="color:#ADBAC7">></span></span>
+<span class="line"><span style="color:#ADBAC7">  )</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">export</span><span style="color:#F47067"> default</span><span style="color:#ADBAC7"> Head</span></span></code></pre>
+<p>（2）では、graphQLのクエリでサムネイル画像のファイル名指定で、ファイルを静的ディレクトリにコピーし、パブリックURL（相対パス）を取得しています。</p>
+<p>（3）、（4）で<code>content</code>に指定したURLがOGPのカードにサムネイルとして表示されます。ここでは、siteMetadataで定義している<code>siteUrl</code>と①で取得したパブリックURLを結合してサムネイル画像のフルパスを生成しています。</p>
+<h2 id="何がダメだったか">何がダメだったか</h2>
+<p>（3）、（4）でsiteUrlと、サムネ画像の<code>publicURL</code>を結合していますが、siteURLにパスプレフィックスと同じリポジトリ名を含めてしまっていた。</p>
+<p><code>publicURL</code>には（1）で定義したパスプレフィックスが含まれるので、最終的なサムネイル画像のフルパスが</p>
+<p><code>https://{ユーザー名}.github.io/{リポジトリ名}/{リポジトリ名}/static/{サムネイル画像ファイル}</code>となってしまい、正しく参照されていなかった。</p>
+<h2 id="どうすべきか">どうすべきか</h2>
+<p>直し方は簡単で、<code>gatsby-config.js</code>を以下のように編集する、</p>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#DCBDFB">require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'dotenv'</span><span style="color:#ADBAC7">).</span><span style="color:#DCBDFB">config</span><span style="color:#ADBAC7">()</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> querystring</span><span style="color:#F47067"> =</span><span style="color:#DCBDFB"> require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'querystring'</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> path</span><span style="color:#F47067"> =</span><span style="color:#DCBDFB"> require</span><span style="color:#ADBAC7">(</span><span style="color:#96D0FF">'path'</span><span style="color:#ADBAC7">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F47067">const</span><span style="color:#6CB6FF"> siteMetadata</span><span style="color:#F47067"> =</span><span style="color:#ADBAC7"> {</span></span>
+<span class="line"><span style="color:#ADBAC7">  title: </span><span style="color:#96D0FF">'Takumi Ogawa - @ogady'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  author: </span><span style="color:#96D0FF">'Takumi Ogawa'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  description: </span><span style="color:#96D0FF">"ogady's portfolio site"</span><span style="color:#ADBAC7">, </span></span>
+<span class="line"><span style="color:#768390">  // siteUrl: 'https://ogady.github.io/portfolio_site',　// ここを↓</span></span>
+<span class="line"><span style="color:#ADBAC7">  siteUrl: </span><span style="color:#96D0FF">'https://ogady.github.io'</span><span style="color:#ADBAC7">,　</span><span style="color:#768390">// こう！！</span></span>
+<span class="line"><span style="color:#ADBAC7">  siteLanguage: </span><span style="color:#96D0FF">'ja'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  shortName: </span><span style="color:#96D0FF">'ogady'</span><span style="color:#ADBAC7">,</span></span>
+<span class="line"><span style="color:#ADBAC7">  ----------中略----------</span></span>
+<span class="line"><span style="color:#ADBAC7">  },</span></span>
+<span class="line"><span style="color:#ADBAC7">}</span></span></code></pre>
+<h2 id="後書き">後書き</h2>
+<p>くそ凡ミスでした。。。</p>
+<h2 id="参考にした記事など">参考にした記事など</h2>
+<ul>
+<li><a href="https://www.gatsbyjs.org/docs/path-prefix/">公式ドキュメント</a></li>
+</ul></div> </article> </main>  <footer> <div class="wrap"> <span>© 2026 Takumi Ogawa</span> </div> </footer> </body></html>

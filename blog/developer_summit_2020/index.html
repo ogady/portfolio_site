@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Developer Summit 2020 1日目行ってきた — Takumi Ogawa</title><meta name="description" content="ogady's portfolio site — SRE / Platform engineer"><meta name="theme-color" content="#050d24"><link rel="canonical" href="https://ogady.github.io/portfolio_site/blog/developer_summit_2020/"><link rel="icon" href="/portfolio_site/avatar.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"><meta property="og:title" content="Developer Summit 2020 1日目行ってきた — Takumi Ogawa"><meta property="og:description" content="ogady's portfolio site — SRE / Platform engineer"><meta property="og:type" content="website"><meta property="og:url" content="https://ogady.github.io/portfolio_site/blog/developer_summit_2020/"><meta property="og:image" content="https://ogady.github.io/portfolio_site/avatar.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@_ogady_"><link rel="stylesheet" href="/portfolio_site/_astro/_slug_.BlSlpe-M.css"></head> <body> <nav class="nav"> <div class="wrap"> <a class="logo" href="/portfolio_site/">ogady<span>.</span></a> <ul> <li><a href="/portfolio_site/#skills">Skills</a></li> <li><a href="/portfolio_site/#career">Career</a></li> <li class="hide-sm"><a href="/portfolio_site/#talks">Talks</a></li> <li class="hide-sm"><a href="/portfolio_site/#writing">Writing</a></li> <li><a href="/portfolio_site/blog/">Blog</a></li> </ul> </div> </nav>  <main class="wrap page"> <a class="back" href="/portfolio_site/blog/">← Blog</a> <article> <time class="post-meta">2020-02-14</time> <h1>Developer Summit 2020 1日目行ってきた</h1> <div class="tags"> <a class="tag" href="/portfolio_site/blog/tags/others/">#others</a><a class="tag" href="/portfolio_site/blog/tags/dev%E3%82%B5%E3%83%9F/">#devサミ</a> </div> <div class="prose"><h2 id="13-d-2-ぼくらの六十日間戦争-ｵﾝﾌﾟﾚからｸﾗｳﾄﾞへの移行"><a href="https://speakerdeck.com/broadleaf/our60dayswar-migrationfromon-premisetocloud">[13-D-2] ぼくらの六十日間戦争 ～ｵﾝﾌﾟﾚからｸﾗｳﾄﾞへの移行～</a></h2>
+<h3 id="ブロードリーフ会社概要">ブロードリーフ会社概要</h3>
+<ul>
+<li>自動車アフターマーケット市場で様々なサービスを提供している</li>
+<li>Broad Leaf Cloud Platform
+<ul>
+<li>自動車整備・鈑金・車両販売</li>
+<li>自動車部品商、リサイクル業　 etc</li>
+<li>新サービスは GCP 上にクラウドネイティブで構築している。k8s 使用</li>
+<li>旧サービスはオンプレミスで VM、RDB、Windows で運用していた ← 今回はこれをクラウド移行した話</li>
+</ul>
+</li>
+</ul>
+<h3 id="なぜクラウド移行したか">なぜクラウド移行したか</h3>
+<ul>
+<li>HW 管理、ミドルウェアの保守からの解放</li>
+<li>IaC によるプロビジョニング自動化、作業属人化の排除
+<ul>
+<li>手順書のメンテナンスができていない、そもそも手順書がないなどの状況だった。</li>
+</ul>
+</li>
+<li>バックアップ、リストア、クラスタ維持の運用コスト削減</li>
+<li>拡張性向上、TCO（Total Cost of Ownership）の削減</li>
+<li>手のかからない状態にしたかった（新規サービスに）体力を割きたかった。</li>
+</ul>
+<h3 id="移行後のインフラ">移行後のインフラ</h3>
+<ul>
+<li>基盤は AWS（EC2 ベース）</li>
+<li>IaC は Terraform</li>
+<li>AMI 作成は Packer &#x26; Ansible</li>
+<li>BtoB サービスでパフォーマンス予測はできるので、自動復旧（オートスケーリング）を目的とする</li>
+<li>DB は RDS を使用</li>
+</ul>
+<h3 id="どうやったか">どうやったか</h3>
+<ul>
+<li>作業は夜間（ユーザー影響を防ぐ）</li>
+<li>DB のバックアップサイズ、S3 の転送時間を加味すると 40 時間くらいかかって間に合わない
+<ul>
+<li>大きな DB は Database Mirroring を使用（DMS は使えなかった）</li>
+<li>小さな DB はフル BU でリストア</li>
+<li>ファイルは毎日 FastCopy（無料で一番早い）で同期</li>
+<li>AWS とオンプレは VPN 接続を行う</li>
+</ul>
+</li>
+</ul>
+<h3 id="移行前の検証">移行前の検証</h3>
+<ul>
+<li>AP の動作検証</li>
+<li>負荷検証
+<ul>
+<li>ここは専用のツールを自作し、複数スレッドで高負荷をかける</li>
+</ul>
+</li>
+<li>DB のフェールオーバの動作検証（DB が FO したとき AP サーバーで接続をキャッシュしないようにする。）</li>
+</ul>
+<h3 id="デプロイ">デプロイ</h3>
+<ul>
+<li>デプロイパイプラインを作成する。開発環境はデプロイ後に EC2 がオートスケールし、入れ替えを行う</li>
+<li>移行は連休を利用して行った。</li>
+</ul>
+<h3 id="移行後に問題発生">移行後に問題発生</h3>
+<h4 id="rds-の-cpu-使用率が爆上がり">RDS の CPU 使用率が爆上がり</h4>
+<ul>
+<li>特定のクエリで CPU 使用率が上がる
+<ul>
+<li>お金でねじ伏せる →RDS インスタンスの垂直拡張 ← これじゃダメだった。6 日後にまた爆あがり</li>
+</ul>
+</li>
+</ul>
+<h5 id="原因は">原因は</h5>
+<ul>
+<li>CPU 使用率が高いクエリがあり、実行プランがおかしくなっている。
+<ul>
+<li>普通は Hint 句をつけるが、古の芸術的クエリを直すのはリスクが高い</li>
+<li>クエリストア（SQL Server）を使用して、実行プランを元に戻した。</li>
+</ul>
+</li>
+<li>他のクエリもおかしくなっていた</li>
+</ul>
+<h5 id="根本原因">根本原因</h5>
+<ul>
+<li>統計情報の更新をしていなかった</li>
+<li>インデックスが断片化していた</li>
+</ul>
+<h5 id="解決">解決</h5>
+<ul>
+<li>
+<p>実行プランの固定化</p>
+<ul>
+<li>検索の文字数で実行プラン変わってしまうクエリがあったので、愚直に一文字づつ固定化した</li>
+</ul>
+</li>
+<li>
+<p>統計情報更新</p>
+</li>
+<li>
+<p>インデックス整備</p>
+</li>
+</ul>
+<h3 id="まとめ">まとめ</h3>
+<ul>
+<li>DB は移行前にきれいにしておく
+<ul>
+<li>インデックスのリビルドなどは定期的にやっておく</li>
+</ul>
+</li>
+<li>全パターンのクエリをテストする必要がある</li>
+<li>移行時に統計情報更新を忘れずに全部やる</li>
+<li>1 ヶ月分の Trace を再生する
+<ul>
+<li>オンプレの本番環境に再生可能な Trace を仕込み</li>
+<li>テスト用 RDS にフルバックアップを展開し Trace を再生</li>
+<li>擬似的に 1 ヶ月分のパフォーマンスを再現テストできる</li>
+</ul>
+</li>
+</ul>
+<h3 id="困難を乗り越えて成長するには">困難を乗り越えて成長するには</h3>
+<ul>
+<li><strong>成長機会は平等ではない</strong></li>
+<li><strong>大事なのは積極性</strong></li>
+<li><strong>一歩踏み出す勇気</strong></li>
+</ul>
+<h2 id="13-c-3-note-の決して止まらないカイゼンを支えるエンジニアリングへの挑戦"><a href="https://www.slideshare.net/KonYuichi/note-227802322/KonYuichi/note-227802322">[13-C-3] note の決して止まらないカイゼンを支える、エンジニアリングへの挑戦</a></h2>
+<h3 id="note-のグロースモデル">note のグロースモデル</h3>
+<ul>
+<li>
+<p><strong>単一の KPI に絞らない</strong></p>
+<p>例：投稿数だけを追う（クソ記事量産）、売り上げだけを追う（有料記事のみ量産）</p>
+</li>
+<li>
+<p>要はバランスを大事にし、<strong>勝手に伸びてくサービス</strong>を目指す</p>
+<ul>
+<li>サービスモデルをアクションでブロック分けし、悪いところを改善していく</li>
+</ul>
+</li>
+</ul>
+<h3 id="note-のチーム">note のチーム</h3>
+<pre class="astro-code github-dark-dimmed" style="background-color:#22272e;color:#adbac7; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>リリース頻度高</span></span>
+<span class="line"><span>- 基盤チーム：グロースモデル全体を下支えする。</span></span>
+<span class="line"><span>  - SEO対策、データ基盤、スパム対策 etc...</span></span>
+<span class="line"><span>- 機能開発チーム：サービスのポテンシャルを上げる。短期間（3ヶ月）でメイン機能をリリースする</span></span>
+<span class="line"><span>  - サークル機能、漫画ビューワ、タイムライン改修</span></span>
+<span class="line"><span>- カイゼンチーム：1日〜2週間で、グロースモデルの弱いところをクイックに開発していく</span></span>
+<span class="line"><span>リリース頻度低</span></span></code></pre>
+<h3 id="note-のデータ">note のデータ</h3>
+<p>定性的にしか見れていなかったので、グロースモデルの状態が把握しづらくなっていた。</p>
+<ul>
+<li>note はサービスが把握しやすい。</li>
+<li>定量的にどこが弱いのかを把握する必要があった。有効な施策を再現性高くやってきたかった。
+<ul>
+<li>定量的に見るために、定義を決める必要がある（創作継続、離脱 etc…）</li>
+<li>グロースモデルをドリルダウンし、よりモデルを定義的に</li>
+</ul>
+</li>
+</ul>
+<h3 id="何をやっているのか">何をやっているのか</h3>
+<h4 id="データ分析基盤">データ分析基盤</h4>
+<ul>
+<li>データを一元管理する AWS で構築、意思決定陣が見やすいインターフェースを提供する</li>
+<li>データを元に、定義付け → 仮説検証 → 調査 を回す。</li>
+</ul>
+<p><strong>サービスの性質により、指標は異なる</strong></p>
+<h3 id="これから何をしていくのか">これから何をしていくのか</h3>
+<ul>
+<li>
+<p>パフォーマンス課題の解消</p>
+<ul>
+<li>Nuxt.js、Rails、AWS それぞれにパフォーマンス課題</li>
+</ul>
+</li>
+<li>
+<p>レコメンド機能を向上させる</p>
+<p>note はなかなかコンテンツの種類が多く、レコメンドが難しい</p>
+<ul>
+<li>適切なチャネルは？</li>
+<li>セグメントの定義は？</li>
+<li>使用する ML の技術は？</li>
+<li>UI/UX の改善ポイントもある</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-b-4質とスピード"><a href="https://speakerdeck.com/twada/quality-and-speed">[13-B-4]質とスピード</a></h2>
+<h3 id="そもそも質とは">そもそも質とは</h3>
+<ul>
+<li>
+<p>狩野モデル</p>
+<ul>
+<li>可能品質と当たり前品質</li>
+</ul>
+</li>
+<li>
+<p>内部品質と外部品質 ≒ 非機能要件と機能要件がある</p>
+</li>
+</ul>
+<h3 id="内部品質を犠牲にしてスピードをとる">内部品質を犠牲にしてスピードをとる</h3>
+<ul>
+<li>
+<p>よく犠牲にされるのは、保守性</p>
+</li>
+<li>
+<p>品質を犠牲にスピードをとるとき、品質 → 内部品質 → 保守性 → テスタビリティ、変更容易性、理解容易性を犠牲にされがち。<strong>これでは現場が疲弊する</strong></p>
+</li>
+</ul>
+<h3 id="ではスピードを遅くすれば保守性は上がるのか">ではスピードを遅くすれば保守性は上がるのか</h3>
+<ul>
+<li>技術力の低い人が時間をかけてコードを書いても、いいコードが出てくるわけではない</li>
+<li>たしかに、「時間がないから、将来困るけど汚いコード書こう」って意識的にやることはない</li>
+<li><strong>保守性とスピードは真のトレードオフではない</strong>
+<ul>
+<li>「事実は、短期的にも長期的でも、崩壊したコードを書くほうがクリーンなコードを書くよりも常に遅い」</li>
+</ul>
+</li>
+<li>品質(保守性)→ スピードの関係は、「保守性が高い<em>にも関わらず</em>スピードがはやい」ではなく「<em>だからこそ</em>」</li>
+<li>スピード → 品質(保守性)の関係では、現在の市場において仮説検証のプロセスの速さで良いサービスを生み出すこと、が求められる中で、「スピードが遅ければ品質を保てる」は真ではないことは明らか</li>
+</ul>
+<h3 id="保守性とスピードの損益分岐点は">保守性とスピードの損益分岐点は？</h3>
+<ul>
+<li><strong>テスト自動化の損益分岐点は約 4 回</strong>（手動テストと自動テストの損益分岐点）</li>
+<li><strong>内部品質への投資の損益分岐点は 1 ヶ月以内に現れる。</strong>
+<ul>
+<li>ここで重要なのは、1 ヶ月であれば、その損益を受けるのは自分たちであること</li>
+</ul>
+</li>
+</ul>
+<h3 id="結論">結論</h3>
+<ul>
+<li>
+<p>「質」VS「スピード」の関係は局所的なものでしかない、<strong>大局的には、質向上とスピード向上はサイクルの関係にある</strong></p>
+</li>
+<li>
+<p>ではどうやって、個人の質を上げるのか</p>
+<ul>
+<li>一番大事、かつ一番厄介なスキルは、**システムを設計するための判断力である。**これは、1 からのシステム構築運用経験が一番効果が高い</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-b-5-best-practices-in-implementing-container-image-promotion-pipelines--知っておくべきコンテナイメージプロモーションの方法"><a href="https://jfrog.com/shownote/developers-summit-2020/">[13-B-5] Best Practices In Implementing Container Image Promotion Pipelines -知っておくべきコンテナイメージ・プロモーションの方法</a></h2>
+<h2 id="技術の好き嫌い">技術の好き嫌い</h2>
+<ul>
+<li>技術を知れば知るほどその技術が好きでなくなっていってしまう。。。</li>
+</ul>
+<h3 id="デプロイについて">デプロイについて</h3>
+<ul>
+<li>本当にデファクト通りにやる必要があるのか？</li>
+<li>今までのやり方と Docker は違う</li>
+</ul>
+<h4 id="docker-はどう違うのか">Docker はどう違うのか</h4>
+<ul>
+<li><code>$ docker build</code>の存在 → 全部を Docker でやってしまいがち
+<ul>
+<li>Docker は簡単だが楽すると面倒なことになる</li>
+</ul>
+</li>
+<li>ワンライナー docker で例えばバージョン指定しないと、勝手に最新バージョンになってしまう。それでは build ごとに docker イメージが同じであると保証できない</li>
+</ul>
+<h4 id="ではどうする">ではどうする</h4>
+<ul>
+<li>
+<p>ただバージョンを固定するだけでも不十分である。なぜならパッチが当たったらまた違うイメージになってしまう。</p>
+</li>
+<li>
+<p>バージョンのハッシュで指定したら？これでは過毒性がおちる。</p>
+<ul>
+<li>これは、Python、Node.js などでも同じで、バージョン管理から逃げることはできない（ディペンデンシを考える）</li>
+</ul>
+</li>
+<li>
+<p><strong>安定したバイナリで管理すること</strong>→ 一度ビルドしたイメージを各パイプラインフェーズで使う</p>
+</li>
+</ul>
+<h4 id="鉄板のパイプラインを作る">鉄板のパイプラインを作る</h4>
+<p>開発環境と本番環境を区別するには</p>
+<ul>
+<li>案 1：LABEL をつける →typo とか怖い</li>
+<li>案 2：dockerhub のリポジトリを分ける → プロジェクトごとの構成であり、環境ごとに分けることはできない</li>
+<li>案 3：環境ごとにレジストリを分ける</li>
+</ul>
+<h4 id="大事なこと">大事なこと</h4>
+<ul>
+<li>環境ごとにレジストリを分ける</li>
+<li>全てのイメージにアクセスしやすくする</li>
+<li>Promotion は素早く行う</li>
+<li>常に最新のものを使用する</li>
+</ul>
+<h4 id="どう実装するか">どう実装するか</h4>
+<p>Docker Tag の構造</p>
+<ul>
+<li>同一ホストに別のレジストリをもつとパニックになる
+<ul>
+<li>Vertiual hosts を使う</li>
+</ul>
+</li>
+</ul>
+<p>レジストリ間の Promotion をどうする</p>
+<ul>
+<li>jfrog のツールで対応する → 開発者からは各環境も同一のレジストリのように扱える</li>
+</ul>
+<p>では最新のバージョンを使いつづけたい場合は？</p>
+<ul>
+<li>jfrog ではメタデータとして管理できる</li>
+</ul>
+<h4 id="jfrog-を使うと">JFrog を使うと</h4>
+<ul>
+<li>最新をシンプルに使える</li>
+<li>依存関係を自分で管理することができる</li>
+<li>自分でベースイメージ、インフラ、アプリケーションファイルを管理する → これをツールなど使って</li>
+</ul>
+<h3 id="まとめ-1">まとめ</h3>
+<ul>
+<li>build は一回だけ</li>
+<li>環境は分ける</li>
+<li>ビルドしたものをプロモートする</li>
+<li>自分の依存関係は自分で管理する</li>
+</ul>
+<h2 id="13-d-6テストエンジニアが教えるテストコードを書き始める前に考えるべきテスト"><a href="https://speakerdeck.com/nihonbuson/developers-summit-2020">[13-D-6]テストエンジニアが教える　テストコードを書き始める前に考えるべきテスト</a></h2>
+<h3 id="テストの目的">テストの目的</h3>
+<p>テストの 7 原則 ①：テストは欠陥がある、ことしか示せない（悪魔の証明的な）</p>
+<ul>
+<li>欠陥の検出</li>
+<li>品質保証</li>
+<li>意思決定のため</li>
+<li><strong>欠陥の作り込みの防止</strong> ← 「実装が終わったからテスト」ではない</li>
+</ul>
+<h3 id="欠陥のつくりこみ防止とは">欠陥のつくりこみ防止とは？</h3>
+<ul>
+<li>設計の段階で気になる項目を上げていくことを口頭テストとも言える
+<ul>
+<li>要は、ぼぼ要件定義</li>
+</ul>
+</li>
+<li>テスト内容はいろんな人と話をしたほうがいい</li>
+</ul>
+<h3 id="テストケースはどう作る">テストケースはどう作る？</h3>
+<p>テストの 7 原則 ②：全テストケースを行うことは不可能である。</p>
+<ul>
+<li>テスト項目笑点的思考法
+<ul>
+<li>「〜のテストをやるべきです（やるべきではないです。）」</li>
+<li>「ほう、それはどうしてだい？」</li>
+<li>「〜だからです」</li>
+</ul>
+</li>
+</ul>
+<h3 id="checking-と-testing">Checking と Testing</h3>
+<p>Checking</p>
+<ul>
+<li>意図通り動くかどうか</li>
+</ul>
+<p>Testing</p>
+<ul>
+<li>どうにかして製品を破壊する作業</li>
+</ul>
+<h3 id="qa-チームがやりたいこと">QA チームがやりたいこと</h3>
+<ul>
+<li>Testing</li>
+<li>テストプロとしてのアドバイス</li>
+<li>話を聞く、質問（意図を聞く）
+<ul>
+<li>よく使える質問
+<ul>
+<li>「これないがしたいんだっけ」→How から What へ</li>
+<li>「ごめん、ちゃんと理解できてないからこの部分もう一度説明してもらっていい？」→ 開発者が自分で気付けなかったことに気づくことができる。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="大事なこと-1">大事なこと</h3>
+<ul>
+<li>テスト作業ではなく、<strong>テスト活動をする</strong>！</li>
+</ul>
+<h2 id="13-c-7intersystems-iris-data-platform-で高度なデータ分析のための基盤を整備しよう">[13-C-7]InterSystems IRIS Data Platform で高度なデータ分析のための基盤を整備しよう</h2>
+<h3 id="データ永続化の歴史">データ永続化の歴史</h3>
+<ul>
+<li>ガバナンスや、コンプライアンスからデータレイクの考え方が生まれた。</li>
+<li>データレイクは技術要素というよりベストプラクティス</li>
+</ul>
+<h3 id="階層型-db-の勧め">階層型 DB の勧め</h3>
+<ul>
+<li>IRIS Data Platform はいいぞ！</li>
+<li>スケーラブルなプラットフォームを提供している。</li>
+</ul>
+<h3 id="データ分析を行うためには">データ分析を行うためには</h3>
+<ul>
+<li>トレーサビリティの高いツールを使う。</li>
+<li>バグデータが混入した際にその混入原因まで調査する。</li>
+</ul>
+<h2 id="13-d-7エンジニアはものづくりの夢を見るか---aws-loft-tokyo-入館アプリの開発事例-">[13-D-7]エンジニアはものづくりの夢を見るか - AWS Loft Tokyo 入館アプリの開発事例 -</h2>
+<p>※途中から参加</p>
+<h3 id="ポイント">ポイント</h3>
+<ul>
+<li>開発したいモチベーションをどこに置くか、が大事</li>
+<li><strong>締め切り駆動開発！！</strong></li>
+</ul>
+<h3 id="使用技術">使用技術</h3>
+<ul>
+<li>AWS Amplify</li>
+<li>AWS Amplify Framework
+<ul>
+<li>Amplify for ~ :AWS バックエンドと簡単に統合できるクライアントライブラリ</li>
+<li>UI Component:主要フレームワークに対応して、よくある UI をよしなに作ってくれる</li>
+</ul>
+</li>
+<li>AWS Chalice：Python でサーバレスアプリを迅速に作るための OSS フレームワーク</li>
+</ul>
+<h3 id="これからのお話運用と改善">これからのお話(運用と改善)</h3>
+<ul>
+<li>空席情報わかるようにしたい</li>
+<li>本人確認書類提出をやめたい</li>
+</ul>
+<h2 id="13-e-8チームをつくるモブプログラミング-内側と外側から語る"><a href="https://speakerdeck.com/yattom/mob-programming-to-build-teams">[13-E-8]チームをつくるモブプログラミング ～内側と外側から語る～</a></h2>
+<h3 id="モブプロを始める">モブプロを始める</h3>
+<p>始めるときは。。。</p>
+<ul>
+<li>モビングを実験とする</li>
+<li>行番号 ON</li>
+<li>起こらない etc…</li>
+</ul>
+<h4 id="経験から得られたコツ">経験から得られたコツ</h4>
+<ul>
+<li>
+<p>目的とゴールを定める・・・長期的なゴールと、局所的なセッションのゴールを決める。このとき、「目的はこれ。いいですか？」をリーダーが主導してはいけない。</p>
+</li>
+<li>
+<p>進み方を共有する・・・ToDo リスト作成、作業の区切りを確認しながら進む。 <strong>ドライバーが常にぶつぶつする</strong></p>
+</li>
+<li>
+<p>その場でフィードバックを得る・・・<strong>後で一人でテストしたり、リファクタしたりはだめ</strong></p>
+</li>
+<li>
+<p>振り返りをする・・・ただ、一人復習の方が集中できる場合もあるので、自由</p>
+</li>
+</ul>
+<blockquote>
+<p>Q. モブプロ始めるとき周りをどう説得するか</p>
+<p>A. 試験的にやってみる。外部の人や、経験者のお墨付きを得る。</p>
+<p>Q. 「一人で作業したい」と言われたら。</p>
+<p>A. とりあえずやってみてもらう！！別に全員でやる必要もない。</p>
+</blockquote>
+<h3 id="チームをブーストするモブプロ">チームをブーストするモブプロ</h3>
+<h5 id="目的">目的</h5>
+<ul>
+<li>教育的強化</li>
+<li>チームの生産性強化</li>
+</ul>
+<h5 id="スキルトランスファー">スキルトランスファー</h5>
+<ul>
+<li>経験値が低い人をドライバにする・・・経験のある人がガリガリ進めると、周りが気後れしまう。</li>
+<li>仕事を止めることができる権利を渡す・・・知識のジャストインタイム</li>
+<li>聴きながら手を動かして学ぶ</li>
+<li>参加者全員で共有できる</li>
+</ul>
+<p>ここで、暗黙知（コードの組み立て方、ツールの便利機能、What/Why/How）も共有すること</p>
+<h5 id="レビュー">レビュー</h5>
+<p>レビューおじさん問題（スキルアップして、開発したいのにレビュアーになっちゃう）を救う。
+レビューの目的は、<strong>検査、学習、強化</strong>。モブプロは<strong>検査、学習</strong>をカバーする。</p>
+<ul>
+<li>リアルタイムレビュー</li>
+<li>タイポは親の仇のように指摘してくれる</li>
+<li>チーム全員の合意をもとにコードかける</li>
+<li>忖度せずにチーム全員でベストなコードを目指すことができる</li>
+</ul>
+<p>レビューと組み合わせて 3 要素全て補填していく。</p>
+<p>Re-View（再び観る）の意味を考える。普通だと、レビュアーは First-View。開発時の目線と冷静な目線両方持つことができる。</p>
+<blockquote>
+<p>Q. 喧嘩にならない？</p>
+<p>A. 建設的な議論であれば OK。絶対に強い言葉を使わないことが大事。無意味</p>
+<p>Q. 「わからないです」って言えない人出てきちゃうのでは？</p>
+<p>A. ドライバを任せる、期間区切って振り返りの時間をこまめに取る。</p>
+</blockquote>
+<h3 id="仕事をドライブするモブプロ">仕事をドライブするモブプロ</h3>
+<h4 id="モブプロの真価とは">モブプロの真価とは</h4>
+<ul>
+<li>全員の知識を生かせる</li>
+<li>個々の総和以上の成果</li>
+<li>エンゲージメントを引き出す</li>
+<li>オーバーヘッドが最小になる。</li>
+</ul>
+<p>####モブプロが活きない場面</p>
+<ul>
+<li>みんな知っていること</li>
+<li>簡単な問題の積み重ね</li>
+<li>単純作業、ルーチンワーク</li>
+</ul>
+<h4 id="モブプロの目的にあった方式を使う">モブプロの目的にあった方式を使う</h4>
+<ul>
+<li>仕事のドライブ or チームをブースト</li>
+</ul>
+<p>回数重ねてうまく回り始めると、両方ハイパフォーマンスを実現する方向へ収束していく</p>
+<p><strong>あとは結局、心理的安全が大事</strong>。心理的安全が担保されていると、ほどよい学習状態（プレッシャーと能力のバランスが取れている状態）を作り出すことができる</p>
+<blockquote>
+<p>Q. 仕事を分担してやると、生産性が落ちちゃうんじゃない？</p>
+<p>A. 短期的生産性 UP、単純作業、ルーチンワークが目的の場合はそう。あとは人数が多すぎてもあまり意味がない。中長期的に見て生産性を上げる戦術として使うもの</p>
+<p>Q. ほどよい学習状態に身を置くための工夫とは？</p>
+<p>A. 新しい技術をモブプロ題材にするなど</p>
+<p>Q. モブプロがうまく行っているチームとは</p>
+<p>A. 全員が均等に発言している。楽しそうにしている。偉い人がそのチームをほっといてくれている状態。</p>
+</blockquote>
+<h2 id="モブプロの全体性">モブプロの全体性</h2>
+<ul>
+<li>チームを、内側の向上 → 外側の向上 →…と拡張させていくと、最終、会社の話になってくる。</li>
+<li>インテグラル理論、タックマン理論</li>
+<li>決して <strong>モブプロをやらないといけないわけではない</strong> 。→「一緒に行動すること」ではなく「一緒に考えること」が重要</li>
+</ul></div> </article> </main>  <footer> <div class="wrap"> <span>© 2026 Takumi Ogawa</span> </div> </footer> </body></html>

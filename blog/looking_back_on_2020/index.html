@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>2020年振り返りと、今年の抱負的なもの — Takumi Ogawa</title><meta name="description" content="ogady's portfolio site — SRE / Platform engineer"><meta name="theme-color" content="#050d24"><link rel="canonical" href="https://ogady.github.io/portfolio_site/blog/looking_back_on_2020/"><link rel="icon" href="/portfolio_site/avatar.jpg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"><meta property="og:title" content="2020年振り返りと、今年の抱負的なもの — Takumi Ogawa"><meta property="og:description" content="ogady's portfolio site — SRE / Platform engineer"><meta property="og:type" content="website"><meta property="og:url" content="https://ogady.github.io/portfolio_site/blog/looking_back_on_2020/"><meta property="og:image" content="https://ogady.github.io/portfolio_site/avatar.jpg"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@_ogady_"><link rel="stylesheet" href="/portfolio_site/_astro/_slug_.BlSlpe-M.css"></head> <body> <nav class="nav"> <div class="wrap"> <a class="logo" href="/portfolio_site/">ogady<span>.</span></a> <ul> <li><a href="/portfolio_site/#skills">Skills</a></li> <li><a href="/portfolio_site/#career">Career</a></li> <li class="hide-sm"><a href="/portfolio_site/#talks">Talks</a></li> <li class="hide-sm"><a href="/portfolio_site/#writing">Writing</a></li> <li><a href="/portfolio_site/blog/">Blog</a></li> </ul> </div> </nav>  <main class="wrap page"> <a class="back" href="/portfolio_site/blog/">← Blog</a> <article> <time class="post-meta">2021-01-01</time> <h1>2020年振り返りと、今年の抱負的なもの</h1> <div class="tags"> <a class="tag" href="/portfolio_site/blog/tags/others/">#others</a> </div> <div class="prose"><h2 id="はじめに">はじめに</h2>
+<p><a href="https://twitter.com/_ogady_">ogady</a>です。</p>
+<p>今年はいろいろありましたが、自身の備忘もかねて2020年を振り返っていこうと思います。</p>
+<p>（振り返りが年越してもまあええやろって思ってる）</p>
+<h2 id="2020年の振り返り">2020年の振り返り</h2>
+<h3 id="ざっくり">ざっくり</h3>
+<ul>
+<li>1月〜2月：コアシステムのデータ移管、EPUBチェックツールの開発、運用、<a href="https://sre-next.dev/">SRE NEXT 2020</a>開催</li>
+<li>3月〜4月：コアシステムのデータ移管、SRE部に兼任メンバーとしてJoin</li>
+<li>5月〜6月：コアシステムのデータ移管、コアシステムのクラウド化検討、<a href="https://sre-lounge.connpass.com/event/175323/">SRE Lounge #12</a>開催</li>
+<li>7月：コアシステムクラウド化にあたり、Terraformをキャッチアップ</li>
+<li>8月：AWSインフラ設計、TerraformによるAWSインフラ構築、GoでAWSサービスをラップするAPIの開発</li>
+<li>9月：Angular（フロント）、Go（バックエンド）で新規サービスをフルスタック開発</li>
+<li>10月~11月：PHPを7系へバージョンアップ対応、PHP新規機能実装</li>
+<li>12月：コアシステムクラウドデータ移行試験</li>
+</ul>
+<h3 id="1月6月">1月〜6月</h3>
+<h4 id="コアシステムのデータ移管">コアシステムのデータ移管</h4>
+<h5 id="やったこと">やったこと</h5>
+<ul>
+<li>マイグレーションシステムの開発(Go、AWS、OracleDB、PostgresDB)</li>
+<li>マイグレーション作業</li>
+<li>電子書籍形式(EPUB)チェックツールの開発</li>
+<li>PMOとの移管作業調整</li>
+</ul>
+<p><span>　</span>今年の前半は、昨年から引き続き<strong>コアシステムの移管案件</strong>をメインにやってました。特に自身としては、属人化防止、ツール開発による作業の効率化に関心を向けて取り組んでいました。</p>
+<p><span>　</span>案件自体に途中から参加したので、案件の前提やタスクのハンドリングはリーダーがメインにやっていただき、自分は作業の手順を明記したり、アセット（EPUB）を並列でチェックできるツールを作成したことでチーム全体の生産性をあげることに注力していました。</p>
+<h4 id="sre-next-2020開催">SRE NEXT 2020開催</h4>
+<p><span>　</span>SRE NEXT 2020のイベントに運営として参加しました。詳細は別の記事でまとめているので是非！</p>
+<ul>
+<li><a href="https://ogady.github.io/portfolio_site/srenext2020_impression/">SRE NEXT コアスタッフとして参加しました！</a></li>
+</ul>
+<h4 id="sre-lounge-12開催">SRE Lounge #12開催</h4>
+<p><span>　</span>SRE Loungeのイベントに運営として参加し、初のオンライン開催を行いました。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dibCO1bWhR8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p><span>　</span>自分は動画配信方法の検証・計画や、当日のオブザーバーとしてZoomに入りコメントや意見などを差し込んだりしていました。</p>
+<p><span>　</span>オンラインイベント経験が少ないメンバーでしたが、なんとかいい感じにできたんじゃないかなと思ってます。次やるときは懇親会含め、参加者全体がコミュニケーションできる形で、エンジニア同士がつながっていけるようなオンラインイベントにしたい。</p>
+<h4 id="社内のsreチームに兼任メンバーとして参加">社内のSREチームに兼任メンバーとして参加</h4>
+<p><span>　</span>SRE NEXTやSRE Loungeで得た知見を社内Slackで共有していたら、「ちょうど社内でSREチームが発足するから是非入ってくれないか」と声をかけていただき、自分としても是非やらせてくださいということで、兼任としてSREチームに参加することとなりました。（やりたいことアピールするのはマジで大事）</p>
+<p><span>　</span>途中でメインの案件が忙しくなってしまい手伝えなくなってしまいましたが、荒れ果てたAWSアカウント管理や、クラウドセキュリティ周りの整備、SLI/SLOの普及活動、Datadog導入検証などいろんなことをやらせてもらいました。</p>
+<h3 id="7月12月">7月~12月</h3>
+<h4 id="コアシステムのクラウド化">コアシステムのクラウド化</h4>
+<p><span>　</span>今年の7月あたりからは弊社のコアシステムのクラウド化対応が本格的に始動しました。</p>
+<p><span>　</span>案件の体制としては、既存オンプレの保守チームとクラウドリフトチームが主に開発し、SREにセキュリティやモニタリングの設計のサポートに入ってもらう感じで、僕はクラウドリフトチームとして、AWSインフラ設計・構築だったり、新規サービスや内部APIの開発をガリガリやっていました。</p>
+<p><span>　</span>もとのオンプレシステムがいわゆるレガシー化しており、技術的な課題が沢山あったものの、チームメンバーに前職の同僚をリファラルで召喚したりして、いろいろ手伝ってもらいました。おそらく開発当時ではベストプラクティスだったのだとおもいますが、そこから何年も経過した結果レガシー化して行ってしまったのかなぁ、って感じです。できればクラウドリフトするにあたって、既存のアプリケーションはすべてコンテナ化してFargateにホスティングしたかったのですが、どうしても解決できない課題があり、一部はIaaSにて運用することとしました。</p>
+<p><span>　</span>また、クラウドリフトにあたりS3やSESを使用する部分は、クラウドリフトチームがAWSサービスをラッピングする内部APIをGoで作成し、既存オンプレ保守メンバーにそのAPIを使用する部分をPHPで実装してもらうことにしました。この方針は結構うまく行ったと思っていて、メール送信やアセットファイルの操作箇所を既存オンプレ保守チームの人海戦術でガンガン修正していくことができました。</p>
+<p><span>　</span>下期はほとんどをこのクラウドリフトに張り付いていたのですが、いろいろ詰まったことが多く学びもあったので、どこかのタイミングで登壇したいなーと思ってます。</p>
+<h3 id="技術的なインプット">技術的なインプット</h3>
+<ul>
+<li>Web基礎技術
+<ul>
+<li>ネットワーク
+<ul>
+<li>これまでなぁなぁで触ってたHTTPヘッダーや、パケットの流れ方と真面目に向き合う必要があり、体系的に学び直した</li>
+</ul>
+</li>
+<li>ブラウザ技術
+<ul>
+<li>Cookie、ローカルストレージの各属性や使い分け、セキュリティ課題などの知識を再整理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>インフラ
+<ul>
+<li>AWS
+<ul>
+<li>Fargate、Lmabdaの新機能をガンガン使った作成（機能全盛りLambdaとかも作る羽目になった）</li>
+<li>EFSのアクセスポイント設計</li>
+<li>SQS、Lambdaを利用したイベント駆動バッチフローの作成</li>
+<li>NLBの仕様、ユースケースを整理、実装</li>
+</ul>
+</li>
+<li>IaC
+<ul>
+<li>Terraformのモジュール設計、実装（ディレクトリ構成、実運用時のいろんなつらみに遭遇した。。。）</li>
+</ul>
+</li>
+<li>コンテナ
+<ul>
+<li>Dockerの再学習</li>
+<li>コンテナロギング手法の検討、設計</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>バックエンド
+<ul>
+<li>Goを使用したAPI開発</li>
+<li>Swaggerスキーマ作成</li>
+<li>PHP7系へのバージョンアップ</li>
+</ul>
+</li>
+<li>フロントエンド
+<ul>
+<li>Angularを使用したフロント開発</li>
+</ul>
+</li>
+</ul>
+<h3 id="技術的なアウトプット">技術的なアウトプット</h3>
+<p><span>　</span>アウトプットは、基本弊社の<a href="https://techdo.mediado.jp/">テックブログ</a>で業務で扱った技術要素について記事を書くことが多かった。（合計4本）</p>
+<p><span>　</span>あとは、技術書典では<a href="https://techbookfest.org/product/5396219595587584?productVariantID=6201684608942080">Tech Do Book #4</a>にも2本寄稿しました。</p>
+<p><span>　</span>イベント登壇については、あまり進展はないものの弊社主催の外部向けイベントに「aws-sdk-go-v2入門」というテーマで登壇するという実績を開放しました。</p>
+<script async class="speakerdeck-embed" data-id="4acb9be94c9c4a7fa8ad484eb68615fe" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+<p><span>　</span>ただ、この登壇直後<code>aws-sdk-go-v2</code>に破壊的なアップデートが入ったため、この登壇内容は一瞬で過去のものとなってしまった。。。</p>
+<h3 id="趣味とか">趣味とか</h3>
+<h4 id="相変わらずアニメをみまくっていた">相変わらずアニメをみまくっていた</h4>
+<p><span>　</span>僕はもともとアニメが好きなので、懲りずに毎クールごとにアニメを追いかけたりしてるのですが、今年も旧作から新作まで60作品くらいみてたと思う。</p>
+<p><span>　</span>完全個人の感想としては、テレビシリーズは「<strong>映像研には手を出すな</strong>」、「<strong>ドロヘドロ</strong>」、「<strong>BNA</strong>」あたりの上期にやってたアニメが最高だった。劇場版アニメは「<strong>羅小黒戦記</strong>」一択。</p>
+<p><span>　</span>あと、社内のアニメ・漫画好きの人たちといろいろ会話してく中で、そもそも「オタク」という呼び方やレッテルに対して違和感を抱くことが多かったのでこの辺ちゃんと言語化してnoteでも書いてみようかなど思いました。</p>
+<h4 id="vrの世界に再び">VRの世界に再び</h4>
+<p><span>　</span>VR機器自体はもともと持っていて、1年ほど前にVRChatを楽しみつつ、自分のオリジナルアバターを「Blender」を使って作るなどしていたのだけど、周りにやってる人が全然いなくて、そのうち放置してしまっていた。</p>
+<p><span>　</span>そしたら今年、「Oculus Quest 2」の発売で周りにVR人口が増え始めたなーとおもっていたら、友達の<a href="https://twitter.com/fukubaka0825">@Takashi Narikawa</a>がVRChatにどハマりしたらしく、自分も再びVRの世界に戻ってみた。</p>
+<p><span>　</span>最初に思ったのが、スタンドアロンで動くHMDがめっちゃ楽ということと、新型コロナの影響かオンライン上での空間体験に力を入れた企画が増えていたこともあり自分が触っていた時とは、VRChatがすごい進化してるなと感じました。</p>
+<p><span>　</span>VRは映像コンテンツとしてだけでなく、全く新しいエンタメ体験を得ることができる可能性があるなーと小並感のある感想を持ちました。日本人向けの初心者コミュニティとかも充実しているので、このタイミングで始めるのめっちゃいいと思います！</p>
+<h3 id="2021年の抱負">2021年の抱負</h3>
+<h4 id="業務内のこと">業務内のこと</h4>
+<p><span>　</span>クラウドリフト後の運用、監視の充実をまずはしっかりやっていきたい。ここはSREチームと協力しながら自分の得意領域にしていきたいと思ってます。</p>
+<p><span>　</span>その後は、自分の興味領域に対して社内でできることを探しつつ、深堀りしていく年にしたい。</p>
+<h4 id="業務外のこと">業務外のこと</h4>
+<p><span>　</span>アウトプット量を増やしたい思いはあるものの、あくまで自分のペースでやっていくのが向いてるなーと最近気づいたので、あまりストイックに考えすぎずにやっていこうと思います。</p>
+<p><span>　</span>とはいえ、イベント登壇や執筆系はある程度定期的にやりたいので、ネタは都度都度ストックしていかないと。</p>
+<h4 id="趣味のこと">趣味のこと</h4>
+<p><span>　</span>アニメ・漫画は何も言われなくても観るので、そのことについて何か記事書いてみるとか、VRまわりのアバターモデリングとかをやってこうかなと。モデリングはとりあえず自分のリアルアバターでも作ってみようかな。VRChatでWorld作るなら羅小黒戦記の世界を再現してみたいなぁと思ってます。</p></div> </article> </main>  <footer> <div class="wrap"> <span>© 2026 Takumi Ogawa</span> </div> </footer> </body></html>
