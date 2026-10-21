@@ -71,8 +71,7 @@ img { max-width: 100%; display: block; }
   display: grid; grid-template-columns: minmax(0, 34rem) auto; justify-content: space-between;
   gap: 2rem 3rem; align-items: end; margin-top: clamp(2rem, 5vw, 3.2rem);
 }
-.hero-body .role { margin: 0 0 0.5rem; font-weight: 700; }
-.hero-body .lead { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.hero-body .lead { margin: 0; font-size: 1.1rem; }
 @media (max-width: 720px) {
   .hero-name .sticker { position: static; margin-bottom: 1.4rem; transform: rotate(-6deg); }
   .hero-name span + span { padding-left: 0; }
