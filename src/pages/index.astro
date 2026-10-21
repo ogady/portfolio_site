@@ -51,7 +51,6 @@ const trace = [...career].reverse().map((job, n) => ({
     </h1>
     <div class="hero-body">
       <div>
-        <p class="role">株式会社エウレカで SRE & Data Platform / Data Enabling のマネージャーをしています。</p>
         <p class="lead">
           AWS / Kubernetes / Terraform を軸に、信頼性とデリバリーの速さを両立させるプラットフォームとデータ基盤を作っています。
         </p>
@@ -168,12 +167,9 @@ const trace = [...career].reverse().map((job, n) => ({
       </div>
     </section>
 
-    <section class="block" id="works">
+    <section class="block" id="hobbies">
       <div class="wrap">
-        <div class="sec-head">
-          <h2>Works</h2>
-          <p>仕事の外で作っているもの。</p>
-        </div>
+        <div class="sec-head"><h2>Hobbies</h2></div>
         <div class="works">
           {works.map((w, n) => (
             <a class="work" href={w.url} style={`--c:${COLORS[(n + 1) % COLORS.length]}`}>
