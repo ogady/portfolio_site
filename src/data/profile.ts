@@ -11,8 +11,8 @@ export const user = {
 }
 
 export const skills = [
-  { title: 'Languages', items: ['Go', 'TypeScript / JavaScript', 'Python', 'PHP'] },
-  { title: 'Infra / Cloud', items: ['AWS / Google Cloud', 'Kubernetes', 'Docker', 'Terraform', 'Linux'] },
+  { title: 'Programming Languages', items: ['Go', 'TypeScript / JavaScript', 'Python', 'PHP'] },
+  { title: 'Infrastructure / Cloud', items: ['AWS / Google Cloud', 'Kubernetes', 'Docker', 'Terraform', 'Linux'] },
   { title: 'Data Platform', items: ['BigQuery', 'dbt', 'dagster'] },
   { title: 'Database', items: ['MySQL', 'DynamoDB'] },
   { title: 'DevOps / SRE', items: ['CI/CD', 'SLI/SLO設計', 'Progressive Delivery', 'Datadog'] },
